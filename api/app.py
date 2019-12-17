@@ -21,6 +21,16 @@ def contact():
 def training():
     return render_template('training.html')
 
+@app.route('/settings')
+def settings():
+    return render_template('settings.html')
+
+@app.route('/hyper-parameters')
+def hyper_parameters():
+    return render_template('hyper-parameters.html')
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
