@@ -1,3 +1,5 @@
+![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home-%20(v1)%20.png) 
+
 # Deep-Learning-Training-GUI
 This repository allows you to get started with a gui based training a Deep Learning model with no configuration needed! Set your labeled dataset and start the training right away and monitor it with TensorBoard.
 
@@ -44,3 +46,5 @@ Coming soon.
 # References
 
 - [How to Easily Deploy Machine Learning Models Using Flask](https://towardsdatascience.com/how-to-easily-deploy-machine-learning-models-using-flask-b95af8fe34d4) [1]
+
+- [Google - TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/overview) [2]
