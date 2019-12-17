@@ -1,12 +1,12 @@
-# Tensorflow-Training-GUI
+# Deep-Learning-Training-GUI
 This repository allows you to get started with a gui based training a Deep Learning model with no configuration needed! Set your labeled dataset and start the training right away and monitor it with TensorBoard.
 
-# Prerequisites
+# Getting started
+### Prerequisites
 
 Coming soon.
 
-
-# Dataset Folder Structure
+### Dataset Folder Structure
 The following is an example of how a dataset should be structured. Before you train a deep learning model, put all your dataset into datasets directory.
 
 ```
@@ -26,15 +26,13 @@ The following is an example of how a dataset should be structured. Before you tr
 
 ```
 
-# Contributing
-Contributions with example scripts for other frameworks(PyTorch and Caffe 2) are welcome!
-
 # Usage
 
-Coming soon. 
+Coming soon.
 
-## Guidelines
-
+# Contributing
+Contributions with example scripts for other frameworks(PyTorch and Caffe 2) are welcome!
+### Guidelines
 Coming soon.
 
 # References
