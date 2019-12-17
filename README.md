@@ -1,4 +1,4 @@
-![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home-%20(v1)%20.png) 
+![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
 
 # Deep-Learning-Training-GUI
 This repository allows you to get started with a gui based training a Deep Learning model with no configuration needed! Set your labeled dataset and start the training right away and monitor it with TensorBoard.
