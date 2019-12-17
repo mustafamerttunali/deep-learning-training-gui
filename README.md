@@ -37,4 +37,4 @@ Coming soon.
 
 # References
 
-Coming soon.
+- [How to Easily Deploy Machine Learning Models Using Flask](https://towardsdatascience.com/how-to-easily-deploy-machine-learning-models-using-flask-b95af8fe34d4) [1]
