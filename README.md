@@ -28,7 +28,13 @@ The following is an example of how a dataset should be structured. Before you tr
 
 # Usage
 
-Coming soon.
+### Page - Training
+
+
+#### Prepare Data Section
+![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20prepare%20data%20(1)%20.png) 
+
+* Details coming soon.
 
 # Contributing
 Contributions with example scripts for other frameworks(PyTorch and Caffe 2) are welcome!
