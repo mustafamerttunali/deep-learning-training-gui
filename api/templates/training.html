@@ -4,7 +4,7 @@
 
 <script src="https://kit.fontawesome.com/c5ffb49d8a.js" crossorigin="anonymous"></script>
 
-<title >DLTG - Training</title>
+<title >DLTG - Settings</title>
     
 <body>
 
@@ -18,7 +18,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
-                <<a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="training" >Training</a>
                 <a class="nav-item nav-link" href="contact" >Contact</a>
               </div>
@@ -28,19 +28,16 @@
 
     
 
-    <div class="jumbotron" style="background: linear-gradient(90deg, rgb(163, 187, 239) 0%, rgb(157, 129, 211) 35%, rgb(203, 104, 104) 100%);">
+    <div class="jumbotron" style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+    ">
         
       <div class="row" style="text-align: center;">
 
-        <div class="col-md-4">
-          <i class="fas fa-database" style="color: darkblue;"> Prepare data (1)</i>
+      
+        <div class="col-md-12">
+          <i class="fas fa-cog" style="color: honeydew;"><p class="h1">Set Your Model</p> </i> 
         </div>
-        <div class="col-md-4">
-          <i class="fas fa-cog"> Settings (2)</i> 
-        </div>
-        <div class="col-md-4">
-          <i class="fas fa-wrench"> Hyper Parameters (3) </i>
-        </div>
+       
 
 
 
@@ -48,27 +45,62 @@
       </div>
 
 
-      <select class="form-control form-control-sm">
-        <option selected>Select a dataset...</option>
-        <option>mnist</option>
-        <option>malaria</option>
-        <option>stanford_dogs</option>
-      </select>
 
-      <br>
+      <!-- FORM  -->
 
-      <select class="form-control form-control-sm">
+        <!-- <select class="form-control form-control-sm">
         <option selected>Type of label</option>
         <option>json</option>
         <option>pascal</option>
-      </select>
+      </select> 
+     <br>
+    -->
+    <form action = "http://localhost:5000/terminal" method = "POST">
       
+      Choose your dataset (datasets/yourdatasetname)
+      <input class="form-control form-control-sm" type="file" name="dataset" webkitdirectory directory multiple/>
+
       <br>
-      
+
       Split the dataset (0.20 is fine) 
       <br>
-      <input class="form-control form-control-sm" type="number" placeholder="0.20" min="0.20" max="0.50">
+      <input class="form-control form-control-sm" type="number" name="split_dataset" placeholder="0.20" min="0.20" max="0.50" required>
       <br>
+      Name of your project *
+      <input class="form-control form-control-sm" type="text" name="project_name" required >
+      <br>
+
+      Pre-trained Models *
+      <select class="form-control form-control-sm" name="Pre-trained Model">
+      
+        <option>MobileNetV2</option>
+        <option>frcn_resnet_50</option>
+      </select>
+
+      <br>
+
+     CPU/GPU
+      <select class="form-control form-control-sm" name="CPU/GPU">
+        <option>CPU</option>
+        <option>GPU</option>
+      </select>
+
+
+<br>
+
+      Number of Classes
+      <input class="form-control form-control-sm" type="text" name="noc"required >
+      <br>
+
+      Batch Size
+      <input class="form-control form-control-sm" type="text" name="batch_size" required >
+      <br>
+
+      Epoch (Iteration)
+      <input class="form-control form-control-sm" type="text" name="epoch" required >
+
+      <br>
+
       <div class="row" style="text-align: center;">
 
         <div class="col-md-4">
@@ -77,10 +109,16 @@
         <div class="col-md-4">
 
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="btn btn-primary " href="index.html" role="button" ><i class="fas fa-arrow-right"></i> Next</a>
+            <input class="btn btn-outline-primary" type = "submit" value = "Start Training!" />  </a>
+          
+          </div>
+
+
           </div>
          
         </div>
+
+      </form>
         <div class="col-md-4">
           
         </div>
@@ -89,7 +127,10 @@
 
         </div>
 
+        <br>
+
       <footer style="text-align: center;">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı </a>, Version 1.0</footer>
+      
 
   
 </div>

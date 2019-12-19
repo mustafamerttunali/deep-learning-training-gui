@@ -4,10 +4,6 @@ import pickle
 
 app = Flask(__name__)
 
-
-#model = pickle.load(open('model.pkl', 'rb'))
-
-
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -28,6 +24,14 @@ def settings():
 @app.route('/hyper-parameters')
 def hyper_parameters():
     return render_template('hyper-parameters.html')
+
+
+
+@app.route('/terminal',methods = ['POST', 'GET'])
+def terminal():
+   if request.method == 'POST':
+      result = request.form
+      return render_template("terminal.html",result = result)
 
 
 
