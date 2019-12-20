@@ -31,6 +31,15 @@ def hyper_parameters():
 def terminal():
    if request.method == 'POST':
       result = request.form
+      dataset = result['dataset']
+      split_dataset = result['split_dataset']
+      project_name = result['project_name']
+      pre_trained_model = result['Pre-trained Model']
+      cpu_gpu = result['CPU/GPU']
+      number_of_classes = result['noc']
+      batch_size = result['batch_size']
+      epoch = result['epoch']
+      print(split_dataset)
       return render_template("terminal.html",result = result)
 
 
@@ -38,4 +47,5 @@ def terminal():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    print("hello")
    
