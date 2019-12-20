@@ -47,7 +47,16 @@ The following is an example of how a dataset should be structured. Before you tr
 #### Check Your Config:
 ![Config](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20config%20(2).PNG) 
 
-### ?
+### Training
+* Details coming soon.
+
+### TensorBoard
+* Details coming soon.
+
+### Prediction
+* Details coming soon.
+
+### Export your model
 * Details coming soon.
 
 # Contributing
