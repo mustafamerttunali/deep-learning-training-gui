@@ -6,7 +6,15 @@ This repository allows you to get started with a gui based training a Deep Learn
 # Getting started
 ### Prerequisites
 
-Coming soon.
+- Python 3.7.3
+- Tensorflow 2.0.0 
+- Numpy 1.16.4
+- Matplotlib
+- PIL
+- subprocess
+- pathlib
+
+
 
 ### Dataset Folder Structure
 The following is an example of how a dataset should be structured. Before you train a deep learning model, put all your dataset into datasets directory.
@@ -45,6 +53,16 @@ Coming soon.
 
 # References
 
-- [How to Easily Deploy Machine Learning Models Using Flask](https://towardsdatascience.com/how-to-easily-deploy-machine-learning-models-using-flask-b95af8fe34d4) [1]
+- [Google - TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/overview) [1]
 
-- [Google - TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/overview) [2]
+- [Google - TensorFlow Tutorials](https://www.tensorflow.org/tutorials) [2]
+
+- [Google - TensorFlow  Transfer Learning](https://www.tensorflow.org/tutorials/images/transfer_learning) [3]
+
+- [Font Aawesome](https://fontawesome.com/) [4]
+
+- [Boostrap V4](https://getbootstrap.com/docs/4.4/getting-started/introduction/) [5]
+
+- [How to Easily Deploy Machine Learning Models Using Flask](https://towardsdatascience.com/how-to-easily-deploy-machine-learning-models-using-flask-b95af8fe34d4) [6]
+
+
