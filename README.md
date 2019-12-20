@@ -72,7 +72,7 @@ Coming soon.
 
 - [Google - TensorFlow  Transfer Learning](https://www.tensorflow.org/tutorials/images/transfer_learning) [3]
 
-- [Font Aawesome](https://fontawesome.com/) [4]
+- [Font Awesome](https://fontawesome.com/) [4]
 
 - [Boostrap V4](https://getbootstrap.com/docs/4.4/getting-started/introduction/) [5]
 
