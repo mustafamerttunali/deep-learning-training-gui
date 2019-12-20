@@ -72,7 +72,7 @@ class dl_gui:
     def train(self):
      
 
-        if self.pre_trained_model == "mobilenetv2":
+        if self.pre_trained_model == "MobileNetV2":
             "Image should be (96, 96), (128, 128), (160, 160),(192, 192), or (224, 224)"
             mobilenet = tf.keras.applications.MobileNetV2(input_shape = (224,224,3),
                                                             include_top=False, 
