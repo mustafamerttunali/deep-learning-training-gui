@@ -42,7 +42,7 @@ The following is an example of how a dataset should be structured. Before you tr
 
 
 #### Prepare Data Section
-![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20prepare%20data%20(1)%20.png) 
+![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20set%20your%20model%20(1).png) 
 
 * Details coming soon.
 
