@@ -20,6 +20,7 @@ else:
 
 
 class dl_gui:
+    "Version 1.0 This version, allows you to train image classification model easily"
     def __init__(self, dataset, split_dataset = 0.20, project_name = "testing", pre_trained_model = 'MobileNetV2', cpu = 0, gpu = 1, number_of_classes = 5, batch_size = 16,epoch = 1):
          self.data_dir = pathlib.Path(dataset)
          self.split_dataset = split_dataset
