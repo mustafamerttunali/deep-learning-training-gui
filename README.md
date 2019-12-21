@@ -25,15 +25,8 @@ The following is an example of how a dataset should be structured. Before you tr
         ├── images
         │   ├── img_1.jpg/png
         │   └── img_2.jpg/png
-        ├── labels
-        │   ├── json
-        │   │   ├── img_1.json
-        │   │   └── img_2.json
-        │   └── pascal
-        │       ├── img_1.xml
-        │       └── img_2.xml
         
-
+For Image Classification.
 ```
 
 # Usage
