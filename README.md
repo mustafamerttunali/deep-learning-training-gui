@@ -7,7 +7,7 @@ This repository allows you to get started with a gui based training a Deep Learn
 
 # Getting started
 ### Prerequisites
-
+- Anaconda 64-bit
 - Python 3.7.3
 - Tensorflow 2.0.0 
 - Numpy 1.16.4
