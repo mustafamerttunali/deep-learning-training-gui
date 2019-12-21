@@ -78,4 +78,6 @@ Coming soon.
 
 - [How to Easily Deploy Machine Learning Models Using Flask](https://towardsdatascience.com/how-to-easily-deploy-machine-learning-models-using-flask-b95af8fe34d4) [6]
 
+- [Graphing Pretty Charts With Python Flask and Chartjs](https://blog.ruanbekker.com/blog/2017/12/14/graphing-pretty-charts-with-python-flask-and-chartjs/) [7]
+
 
