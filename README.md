@@ -26,7 +26,7 @@ The following is an example of how a dataset should be structured. Before you tr
         │   ├── img_1.jpg/png
         │   └── img_2.jpg/png
         
-For Image Classification.
+For image classification.
 ```
 
 # Usage
