@@ -3,8 +3,6 @@
 # Deep-Learning-Training-GUI
 This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your labeled dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
 
-![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
-
 # Getting started
 ### Prerequisites
 
@@ -32,6 +30,10 @@ For image classification.
 ```
 
 # Usage
+
+### Page - Home
+
+![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
 
 ### Page - Training
 
