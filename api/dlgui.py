@@ -111,11 +111,11 @@ class dl_gui:
                 MaxPooling2D(),
                 Flatten(),
                 Dense(512, activation='relu'),
-                Dense(5, activation='sigmoid')
+                Dense(5, activation='softmax')
             ])
 
             model.compile(optimizer='adam',
-              loss='binary_crossentropy',
+              loss='categorical_crossentropy',
               metrics=['accuracy'])
 
             history = model.fit_generator(
