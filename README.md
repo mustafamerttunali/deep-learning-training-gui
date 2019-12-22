@@ -30,6 +30,12 @@ The following is an example of how a dataset should be structured. Before you tr
         ├── images
         │   ├── img_1.jpg/png
         │   └── img_2.jpg/png
+    ├──flower_photos/
+        ├── daisy
+        │── dandelion
+        │── roses
+        │── sunflowers
+        │── tulips
         
 For image classification.
 ```
