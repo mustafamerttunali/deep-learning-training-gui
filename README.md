@@ -50,7 +50,7 @@ For image classification.
 ![Config](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20config%20(2).PNG) 
 
 ### Training
-* Details coming soon.
+![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/terminal.png) 
 
 ### TensorBoard
 * Details coming soon.
