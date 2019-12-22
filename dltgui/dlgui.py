@@ -69,6 +69,8 @@ class dl_gui:
         
         # image_batch, label_batch = next(train_data_gen)
         # self.show_batch(image_batch, label_batch)
+
+        
     def train(self):
 
         if self.pre_trained_model == "MobileNetV2":
@@ -94,9 +96,7 @@ class dl_gui:
             tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                           write_graph=True, write_images=False)
 
-            
-              
-
+    
             history = model.fit_generator(
                 self.train_data_gen,
                 steps_per_epoch=self.STEPS_PER_EPOCH,
@@ -105,8 +105,7 @@ class dl_gui:
                 epochs=self.epoch,
                 callbacks=[tensorboard])
            
-            
-            
+        
         else:
             model = Sequential([
                 Conv2D(16, 3, padding='same', activation='relu', input_shape=(self.IMG_HEIGHT, self.IMG_WIDTH ,3)),
@@ -130,9 +129,7 @@ class dl_gui:
                 validation_data = self.test_data_gen,
                 validation_steps = self.VALID_STEPS_PER_EPOCH,
                 epochs=self.epoch)
-
-            #model.evaluate_generator(generator=self.test_data_gen,
-            #steps=self.VALID_STEPS_PER_EPOCH)                 
+               
  
 '''gui = dl_gui(dataset="datasets/flower_photos", split_dataset = 0.20, pre_trained_model = 'MobileNetV2')
 gui.load_dataset()
