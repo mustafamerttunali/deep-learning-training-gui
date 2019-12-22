@@ -108,15 +108,8 @@
               <h5 class="display-5" style="color:rgb(255, 208, 0)">Current Training Accuary & Loss:<br>
               </h5>
 
-              <table class="table " border = 1>
-                {% for key, value in result.items() %}
-                   <tr>
-                      <th> {{ key }} </th>
-                      <td> {{ value }} </td>
-                      
-                   </tr>
-                {% endfor %}
-             </table>
+              
+              <img src="{{url_for('static', filename='history_training_dataset.png')}}" class="img-fluid" alt="Responsive image">
 
               
             </div>
@@ -129,15 +122,8 @@
               <h5 class="display-5" style="color:rgb(0, 81, 255)">Current Validation Accuary & Loss:<br>
               </h5>
 
-              <table class="table " border = 1>
-                {% for key, value in result.items() %}
-                   <tr>
-                      <th> {{ key }} </th>
-                      <td> {{ value }} </td>
-                      
-                   </tr>
-                {% endfor %}
-             </table>
+              <img src="{{url_for('static', filename='history_validation_dataset.png')}}" class="img-fluid" alt="Responsive image">
+
 
               
             </div>
