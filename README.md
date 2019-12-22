@@ -30,6 +30,12 @@ The following is an example of how a dataset should be structured. Before you tr
         ├── images
         │   ├── img_1.jpg/png
         │   └── img_2.jpg/png
+    ├──flower_photos/
+        ├── daisy
+        │── dandelion
+        │── roses
+        │── sunflowers
+        │── tulips
         
 For image classification.
 ```
@@ -50,7 +56,7 @@ For image classification.
 ![Config](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20config%20(2).PNG) 
 
 ### Training
-* Details coming soon.
+![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/terminal.png) 
 
 ### TensorBoard
 * Details coming soon.
@@ -62,7 +68,7 @@ For image classification.
 * Details coming soon.
 
 # Contributing
-Contributions with example scripts for other frameworks(PyTorch and Caffe 2) are welcome!
+Contributions with example scripts for other frameworks (PyTorch or Caffe 2) are welcome!
 ### Guidelines
 Coming soon.
 
