@@ -1,7 +1,6 @@
 import numpy as np
 from flask import Flask, request, jsonify, render_template
-import pickle
-
+from dltgui.dlgui import dl_gui
 # Set Flask
 app = Flask(__name__)
 
@@ -18,17 +17,11 @@ def contact():
 def training():
     return render_template('training.html')
 
-@app.route('/train', methods = ['POST'])
-def settings():
-    if request.method == 'GET':
-        result = request.form
-        dataset = result['dataset']
-        print(dataset)
-        return render_template('train.html')
 
 @app.route('/terminal',methods = ['POST', 'GET'])
 def terminal():
    if request.method == 'POST':
+      '''Read the values from HTML file and set the values for training.''' 
       result = request.form
       dataset = result['dataset']
       split_dataset = result['split_dataset']
@@ -38,13 +31,17 @@ def terminal():
       number_of_classes = result['noc']
       batch_size = result['batch_size']
       epoch = result['epoch']
-      print(split_dataset)
-      return render_template("terminal.html",result = result)
+      
+      gui = dl_gui(dataset=dataset, split_dataset = float(split_dataset), pre_trained_model = pre_trained_model, number_of_classes = int(number_of_classes), batch_size = int(batch_size), epoch = int(epoch) )
+      gui.load_dataset()
+
+      return render_template("terminal.html",result = result), gui.train()
+
 
 
 
 
 if __name__ == "__main__":
     app.run(debug=True)
-    print("hello")
+   
    
