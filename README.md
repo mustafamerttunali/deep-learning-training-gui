@@ -68,7 +68,7 @@ For image classification.
 * Details coming soon.
 
 # Contributing
-Contributions with example scripts for other frameworks(PyTorch and Caffe 2) are welcome!
+Contributions with example scripts for other frameworks (PyTorch or Caffe 2) are welcome!
 ### Guidelines
 Coming soon.
 
