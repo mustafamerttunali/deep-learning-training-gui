@@ -5,6 +5,9 @@
 # Description
 This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your labeled dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
 
+In the words of Stephen Hawking:
+> Science is beautiful when it makes simple explanations of phenomena or connections between different observations. Examples include the double helix in biology and the fundamental equations of physics.
+
 # Getting started
 ### Prerequisites
 - Anaconda 64-bit
