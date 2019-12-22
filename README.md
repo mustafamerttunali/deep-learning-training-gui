@@ -1,11 +1,13 @@
-![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
+<p align="center">
+  <img src="https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/logo.png" alt="logo" />
+</p>
 
-# Deep-Learning-Training-GUI
+# Description
 This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your labeled dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
 
 # Getting started
 ### Prerequisites
-
+- Anaconda 64-bit
 - Python 3.7.3
 - Tensorflow 2.0.0 
 - Numpy 1.16.4
@@ -30,6 +32,10 @@ For image classification.
 ```
 
 # Usage
+
+### Page - Home
+
+![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
 
 ### Page - Training
 
