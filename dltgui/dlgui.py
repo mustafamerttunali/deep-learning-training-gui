@@ -1,5 +1,4 @@
 import tensorflow as tf
-import tensorflow_datasets as tfds
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
@@ -8,21 +7,29 @@ import numpy as np
 import IPython.display as display
 from PIL import Image
 import subprocess
+from multiprocessing import Process
 import pathlib
+import os
+
+# tensorboard --logdir logs
+
 np.random.seed(0)
 tf_version = tf.__version__
+
 
 if tf_version < "2.0.0":
     subprocess.call(['pip', 'install', 'tensorflow-gpu'])
 else:
     print("Your TensorFlow version is up to date! {}".format(tf_version))
-    print("Starting Tensorboard at {http://localhost:6006/}")
 
-
+def startTensorboard(logdir):
+    # Start tensorboard with system call
+    os.system("tensorboard --logdir {}".format(logdir))
+   
 
 class dl_gui:
     "Version 1.0 This version, allows you to train image classification model easily"
-    def __init__(self, dataset, split_dataset = 0.20, pre_trained_model = 'MobileNetV2', cpu = 0, gpu = 1, number_of_classes = 5, batch_size = 16,epoch = 1):
+    def __init__(self, dataset, split_dataset = 0.20, pre_trained_model = 'MobileNetV2', cpu = 0, gpu = 1, number_of_classes = 5, batch_size = 16,epoch = 2):
          self.data_dir = pathlib.Path(dataset)
          self.split_dataset = split_dataset
          self.pre_trained_model = pre_trained_model
@@ -69,8 +76,9 @@ class dl_gui:
         
         # image_batch, label_batch = next(train_data_gen)
         # self.show_batch(image_batch, label_batch)
+    
 
-        
+      
     def train(self):
 
         if self.pre_trained_model == "MobileNetV2":
@@ -92,20 +100,19 @@ class dl_gui:
               loss='categorical_crossentropy',
               metrics=['accuracy'])
 
-            
             tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                           write_graph=True, write_images=False)
 
-    
-            history = model.fit_generator(
+            Process(target=startTensorboard, args=("logs",)).start()
+            Process(target=model.fit_generator(
                 self.train_data_gen,
                 steps_per_epoch=self.STEPS_PER_EPOCH,
                 validation_data = self.test_data_gen,
                 validation_steps = self.VALID_STEPS_PER_EPOCH,
                 epochs=self.epoch,
-                callbacks=[tensorboard])
+                callbacks=[tensorboard])).start()
            
-        
+ 
         else:
             model = Sequential([
                 Conv2D(16, 3, padding='same', activation='relu', input_shape=(self.IMG_HEIGHT, self.IMG_WIDTH ,3)),
@@ -130,9 +137,14 @@ class dl_gui:
                 validation_steps = self.VALID_STEPS_PER_EPOCH,
                 epochs=self.epoch)
                
- 
-'''gui = dl_gui(dataset="datasets/flower_photos", split_dataset = 0.20, pre_trained_model = 'MobileNetV2')
-gui.load_dataset()
-gui.train()    '''
+if __name__ == "__main__":
+
+    gui = dl_gui(dataset="datasets/flower_photos", split_dataset = 0.20, pre_trained_model = 'MobileNetV2')
+    gui.load_dataset()
+    gui.train()
+   
+    
+
+   
 
     
