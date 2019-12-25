@@ -67,12 +67,12 @@ For image classification.
 ### Export your model
 * Details coming soon.
 
-# Contributing
+# Contributing 
 Contributions with example scripts for other frameworks (PyTorch or Caffe 2) are welcome!
 ### Guidelines
 Coming soon.
 
-# References
+# References 📚
 
 - [Google - TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/overview) [1]
 
