@@ -11,8 +11,6 @@ from multiprocessing import Process
 import pathlib
 import os
 
-# tensorboard --logdir logs
-
 np.random.seed(0)
 tf_version = tf.__version__
 
@@ -22,6 +20,7 @@ if tf_version < "2.0.0":
 else:
     print("Your TensorFlow version is up to date! {}".format(tf_version))
 
+
 def startTensorboard(logdir):
     # Start tensorboard with system call
     os.system("tensorboard --logdir {}".format(logdir))
@@ -29,7 +28,7 @@ def startTensorboard(logdir):
 
 class dl_gui:
     "Version 1.0 This version, allows you to train image classification model easily"
-    def __init__(self, dataset, split_dataset = 0.20, pre_trained_model = 'MobileNetV2', cpu = 0, gpu = 1, number_of_classes = 5, batch_size = 16,epoch = 2):
+    def __init__(self, dataset, split_dataset = 0.20, pre_trained_model = 'MobileNetV2', cpu = 0, gpu = 1, number_of_classes = 5, batch_size = 16,epoch = 1):
          self.data_dir = pathlib.Path(dataset)
          self.split_dataset = split_dataset
          self.pre_trained_model = pre_trained_model
@@ -102,16 +101,19 @@ class dl_gui:
 
             tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                           write_graph=True, write_images=False)
-
+            
+                
             Process(target=startTensorboard, args=("logs",)).start()
-            Process(target=model.fit_generator(
+            target=model.fit_generator(
                 self.train_data_gen,
                 steps_per_epoch=self.STEPS_PER_EPOCH,
                 validation_data = self.test_data_gen,
                 validation_steps = self.VALID_STEPS_PER_EPOCH,
                 epochs=self.epoch,
-                callbacks=[tensorboard])).start()
-           
+                callbacks=[tensorboard])
+            
+            return model.save('models/test.h5')
+            
  
         else:
             model = Sequential([
