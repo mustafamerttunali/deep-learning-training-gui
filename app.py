@@ -34,14 +34,13 @@ def terminal():
       number_of_classes = result['noc']
       batch_size = result['batch_size']
       epoch = result['epoch']
-      gui = dl_gui(dataset=dataset, split_dataset = float(split_dataset), pre_trained_model = pre_trained_model, number_of_classes = int(number_of_classes), batch_size = int(batch_size), epoch = int(epoch))
+      gui = dl_gui(dataset=dataset, project_name = str(project_name), split_dataset = float(split_dataset), pre_trained_model = pre_trained_model, number_of_classes = int(number_of_classes), batch_size = int(batch_size), epoch = int(epoch))
       gui.load_dataset()
       thread_gui = threading.Thread(target= gui.train).start()
       return render_template("terminal.html",result = result, thread_gui = thread_gui)
 
 @app.route('/predict')
 def predict():
-
     return render_template('predict.html')
 
 @app.route('/result', methods = ['POST'])
@@ -58,25 +57,20 @@ def result():
 
     if request.method == 'POST':
         result = request.form
-        #dataset = result['dataset']
+        dataset = result['dataset']
         model_dir= result['model']
         img = result['img']
-        img2array = prepare_image(img)
+        img2array = prepare_image('static/'+ img)
         model = tf.keras.models.load_model('models/'+model_dir)
         pred = model.predict(img2array)
-        s_pred = sigmoid(pred)
-        max_pred = np.max(s_pred)
-        print("En buyuk:", max_pred)
-        gui = dl_gui(dataset='datasets/flower_photos')
-
+        y_classes = pred.argmax(axis=-1)
+        s_pred = sigmoid(pred)* 100
+        max_pred = int(np.round(np.max(s_pred))) 
+        gui = dl_gui(project_name = "Test", dataset=dataset)
         classes = gui.CLASS_NAMES
-        
-        
-            
-     
+        predicted_class = "".join(map(str, classes[y_classes]))
 
-        
-        return render_template('result.html', result = result, max_pred = max_pred, mimetype="text/event-stream")
+        return render_template('result.html', result = result, img = img, max_pred = max_pred, predicted_class = predicted_class,  mimetype="text/event-stream")
 
 
 

@@ -1,3 +1,7 @@
+# Author: Mustafa Mert Tunalı
+# Deep Learning Training GUI - Class Page
+# Last Update: 27 December 2019
+
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
@@ -8,6 +12,7 @@ import IPython.display as display
 from PIL import Image
 import subprocess
 from multiprocessing import Process
+import datetime
 import pathlib
 import os
 
@@ -28,7 +33,8 @@ def startTensorboard(logdir):
 
 class dl_gui:
     "Version 1.0 This version, allows you to train image classification model easily"
-    def __init__(self, dataset, split_dataset = 0.20, pre_trained_model = 'MobileNetV2', cpu = 0, gpu = 1, number_of_classes = 5, batch_size = 16,epoch = 1):
+    def __init__(self, project_name, dataset, split_dataset = 0.20, pre_trained_model = 'MobileNetV2', cpu = 0, gpu = 1, number_of_classes = 5, batch_size = 16, epoch = 1):
+         self.project_name = project_name
          self.data_dir = pathlib.Path(dataset)
          self.split_dataset = split_dataset
          self.pre_trained_model = pre_trained_model
@@ -39,15 +45,12 @@ class dl_gui:
          self.epoch = epoch
          self.IMG_HEIGHT, self.IMG_WIDTH = 224, 224
          self.CLASS_NAMES = np.array([item.name for item in self.data_dir.glob('*') if item.name != "LICENSE.txt"])
-         print("Your training processing is starting...")
-         #print("Split Dataset: {}, Project Name: {}, Pre-Trained Model: {}, CPU: {}, GPU: {}, Number of Classes: {}, Batch_Size: {}, Epoch: {} ".format(self.split_dataset, self.project_name, self.pre_trained_model, self.cpu, self.gpu, self.noc, self.batch_size, self.epoch))
 
     def show_batch(self,image_batch, label_batch):
         plt.figure(figsize=(10,10))
         for n in range(16):
             ax = plt.subplot(5,5,n+1)
             plt.imshow(image_batch[n])
-           
             plt.title(self.CLASS_NAMES[label_batch[n]==1][0].title())
             plt.axis('off')
         plt.show()   
@@ -94,7 +97,6 @@ class dl_gui:
             prediction_layer
             ])
 
-
             model.compile(optimizer='adam',
               loss='categorical_crossentropy',
               metrics=['accuracy'])
@@ -112,8 +114,7 @@ class dl_gui:
                 epochs=self.epoch,
                 callbacks=[tensorboard])
             
-            return model.save('models/test.h5')
-            
+            model.save('models/{}.h5'.format(self.project_name))
  
         else:
             model = Sequential([
@@ -138,12 +139,7 @@ class dl_gui:
                 validation_data = self.test_data_gen,
                 validation_steps = self.VALID_STEPS_PER_EPOCH,
                 epochs=self.epoch)
-               
-if __name__ == "__main__":
-
-    gui = dl_gui(dataset="datasets/flower_photos", split_dataset = 0.20, pre_trained_model = 'MobileNetV2')
-    gui.load_dataset()
-    gui.train()
+            
    
     
 

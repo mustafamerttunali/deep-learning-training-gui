@@ -1,17 +1,13 @@
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel = "icon" href =  
+"https://image.flaticon.com/icons/png/512/2043/premium/2043014.png" 
+        type = "image/x-icon"> 
 <script src="https://kit.fontawesome.com/c5ffb49d8a.js" crossorigin="anonymous"></script>
-
-<title >DLTG - Prediction</title>
-
-
-    
+<title >DLTG - Prediction</title>   
 <body>
-
 <div class="container-fluid">
-       
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/"><i class="fas fa-infinity"></i> Deep-Learning-Training-GUI</a>
@@ -21,89 +17,78 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link active" href="training" >Training</a>
+                <a class="nav-item nav-link" href="training" >Training</a>
+                <a class="nav-item nav-link active" href="predict" >Predict</a>
                 <a class="nav-item nav-link" href="contact" >Contact</a>
               </div>
             </div>
           </nav>
     </header>
 
-    
-
     <div class="jumbotron">
         <h1 class="display-4" style="text-align: center;">Predict your model </h1>
         <p style="text-align: center;font-size: 14px;"><i class="fas fa-exclamation-triangle"></i> Load your model that you trained,
         and predict on the Images that you seleceted!</p>
-      </div>
-      <form action = "http://localhost:5000/result" method = "POST">
-<div class="row" style="text-align: center; ">
-  
-  <div class="col-md-12">
+    </div>
 
-
-    <div class="col-md-12">
-    <form class="md-form" action="#">
-
-      <div class="file-field">
-        <div class="btn btn-danger btn-sm">
-          <span>Choose a model</span>
-          <input type="file" name="model">
+    <form action = "http://localhost:5000/result" method = "POST">
+      <div class="row" style="text-align: center; ">
+        <div class="col-md-12">
+          <div class="col-md-12">
+              <div class="file-field">
+                <div class="btn btn-danger btn-sm">
+                  <span>Choose a model</span>
+                    <input type="file" name="model">
+                </div>
+                </div>
+            </div>
         </div>
-        
-      </div>
-
-    </div>
-  </div>
-
-
-
-
-  <div class="col-md-12">
-<br>
-
-    <div class="col-md-12">
-    <form class="md-form" action="#">
-
-      <div class="file-field">
-        <div class="btn btn-warning btn-sm">
-          <span>Choose a Image</span>
-          <input type="file" name="img">
-        </div>
-        
-      </div>
-
-    </div>
-  </div>
-
-
-  <div class="col-md-12">
-
-<br>
-    <div class="col-md-12">
-    <form class="md-form" action="#">
-
-      <div class="btn-group" role="group" aria-label="Basic example">
-      <input class="btn btn-outline-primary" type = "submit" value = "Predict Your Model" /> 
-    </div>
-
-    </div>
-  </div>
-
-</form>
-</div>
+     <div class="col-md-12">
+      <br>
       
-<div class="col-md-12">
+      
 
-  <br>
-  <br>
-<footer style="text-align: center; ">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı</a>, Version 1.0</footer>
-</div>
+        <div class="col-md-12">
+              <div class="file-field">
+                <div class="btn btn-warning btn-sm">
+                  <span>Choose a Image</span>
+                    <input type="file" name="img"> <br>
+                    
+                </div>
+              </div>
+        </div>
 
-  
+        <br>
+        <div class="col-md-12">
+          <div class="file-field">
+            <div class="btn btn-secondary btn-sm">
+              <span>choose dataset path (datasets/example_dataset)</span>
+              <input class="form-control form-control-sm" type="text"   name="dataset" webkitdirectory mozdirectory msdirectory odirectory directory multiple />    
+            </div>
+          </div>
+    </div>
 
+        <div class="col-md-12">
+          <br>
+          <div class="col-md-12">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <input class="btn btn-outline-primary" type = "submit" value = "Predict Your Model" /> 
+                </div>
+            </div>
+         </div>
+
+    </form>
+    
+    <div class="col-md-12">
+      <br>
+      <br>
+    </div>
+
+  <footer style="text-align: center; ">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı</a>, Version 1.0</footer>
+
+</div> 
 
 </body>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
