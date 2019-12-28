@@ -76,7 +76,7 @@ For image classification.
 
 ### Training and TensorBoard
 When you start to training, you will be able to access TensorBoard without writing any script on terminal!
-Check ```localhost:6000```
+Check ```localhost:6006```
 
 ![Training-Live](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/train%20live.png)
 
