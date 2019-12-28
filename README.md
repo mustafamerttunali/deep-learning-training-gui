@@ -3,7 +3,7 @@
 </p>
 
 # Description
-This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your labeled dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
+This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your  dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
 
 * You won't have any problems for training image classification algorithms.
 * It is easy to train a image classification model, save the model, and make predictions from the saved model.
@@ -54,8 +54,8 @@ For image classification.
 ### Page - Home
 
 1. Clone this repo.
-2. cd Deep-Learning-Training-GUI
-3. On Terminal: ```pip install requirements.txt```
+2. ```cd Deep-Learning-Training-GUI```
+3. On your terminal: ```pip install requirements.txt```
 4. Set your dataset directory as I show above.
 5. When you set your dataset, go to the terminal and run ```python app.py```. You can access the program on ```localhost:5000``` 
 6. Now you will see the home page.
