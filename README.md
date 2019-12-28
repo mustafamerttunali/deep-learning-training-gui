@@ -10,7 +10,7 @@ This repository allows you to get started with a gui based training a Deep Learn
 * A few parameters!
 * You will be able to train on pre-trained models.
 * It doesn't exist for 1.0 but,  it will be much easier to train  and use object detection algortihms.
-* You will be able to train the model on the GPU or CPU.
+* You can train your model on GPU or CPU.
 * Parallel operation is possible.
 * You won't need a second terminal and a script code to run TensorBoard.
 
