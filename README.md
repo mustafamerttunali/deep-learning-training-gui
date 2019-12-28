@@ -62,7 +62,7 @@ For image classification.
 
 ![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
 
-### Page - Training
+### Page - Training - Parameteres
 ![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20set%20your%20model%20(1).png) 
 
 7. You must enter the path where your dataset is located. For example, I want to select the ```flower_photos``` folder in the datasets and I will write to the form element like this: ```datasets/flower_photos```
@@ -78,8 +78,15 @@ For image classification.
 When you start to training, you will be able to access TensorBoard without writing any script on terminal!
 Check ```localhost:6000```
 
+![Training-Live](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/train%20live.png)
+
 ### Prediction
-* Details coming soon.
+
+![Prediction](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/predict.png)
+
+### Result
+![Result](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/result.png)
+
 
 # Contributing 
 Contributions with example scripts for other frameworks (PyTorch or Caffe 2) are welcome!
