@@ -3,7 +3,16 @@
 </p>
 
 # Description
-This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your labeled dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
+This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your  dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
+
+* You won't have any problems for training image classification algorithms.
+* It is easy to train a image classification model, save the model, and make predictions from the saved model.
+* A few parameters!
+* You will be able to train on pre-trained models.
+* It doesn't exist for 1.0 but,  it will be much easier to train  and use object detection algortihms.
+* You will be able to train the model on the GPU or CPU.
+* Parallel operation is possible.
+* You won't need a second terminal and a script code to run TensorBoard.
 
 In the words of Stephen Hawking:
 > Science is beautiful when it makes simple explanations of phenomena or connections between different observations. Examples include the double helix in biology and the fundamental equations of physics.
@@ -44,28 +53,40 @@ For image classification.
 
 ### Page - Home
 
+1. Clone this repo.
+2. ```cd Deep-Learning-Training-GUI```
+3. On your terminal: ```pip install requirements.txt```
+4. Set your dataset directory as I show above.
+5. When you set your dataset, go to the terminal and run ```python app.py```. You can access the program on ```localhost:5000``` 
+6. Now you will see the home page.
+
 ![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
 
-### Page - Training
-
-
-#### Prepare Data Section
+### Page - Training - Parameteres
 ![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20set%20your%20model%20(1).png) 
 
-#### Check Your Config:
-![Config](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20config%20(2).PNG) 
+7. You must enter the path where your dataset is located. For example, I want to select the ```flower_photos``` folder in the datasets and I will write to the form element like this: ```datasets/flower_photos```
+8. Split the dataset, we need to specify what percentage of the training data we will use as a test.
+9. Pre-trained Models - Currently only MobileNetV2 is available, but in future versions you can easily select other pre-trained models for fine-tuning.
+10. CPU / GPU - You need to specify whether you want to train on the GPU or CPU (the first version will automatically run on the GPU).
+11. Number Of Classes -  I'll go again from the flower_photos example. There are 5 separate folders under the ```flower_photos``` folder. This is our class count. When you train your own data set, you have to create as many folders here as you have classes.
+12. Batch Size - Specifies whether the training samples are uploaded to the training network in escapes. If you have a 1080 Ti or better GPU, you can set it to 64 or 128. The higher Batch Size, less noise that the model learns.
+13. Epoch - The number of training data shown to the model network. So if you make 10 Epoch, the training data will be shown to the model network 10 times.
 
-### Training
-![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/terminal.png) 
 
-### TensorBoard
-* Details coming soon.
+### Training and TensorBoard
+When you start to training, you will be able to access TensorBoard without writing any script on terminal!
+Check ```localhost:6000```
+
+![Training-Live](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/train%20live.png)
 
 ### Prediction
-* Details coming soon.
 
-### Export your model
-* Details coming soon.
+![Prediction](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/predict.png)
+
+### Result
+![Result](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/result.png)
+
 
 # Contributing 
 Contributions with example scripts for other frameworks (PyTorch or Caffe 2) are welcome!
