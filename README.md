@@ -36,7 +36,7 @@ The following is an example of how a dataset should be structured. Before you tr
 ```
 ├──datasets/
     ├──example_dataset/
-        ├── images
+        ├── cat
         │   ├── img_1.jpg/png
         │   └── img_2.jpg/png
     ├──flower_photos/
