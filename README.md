@@ -91,8 +91,8 @@ Check ```localhost:6006```
 ![Result](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/result.png)
 
 
-# Contributing 
-Contributions with example scripts for other frameworks (PyTorch or Caffe 2) are welcome!
+# Contributing  
+Contributions with example scripts for other frameworks (PyTorch or Caffe 2) and other pre-trained models are welcome!
 ### Guidelines
 Coming soon.
 
