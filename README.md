@@ -3,7 +3,10 @@
 </p>
 
 # Description
-This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your  dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
+My goal is to simplify the installation and training of pre-trained deep learning models through the GUI (or you can call web app) without writing extra code. Set your  dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool. No more many parameters, no more data preprocessing.
+
+While developing this application, I was inspired by the DIGITS system developed by NVIDIA.
+
 
 * You won't have any problems for training image classification algorithms.
 * It is easy to train a image classification model, save the model, and make predictions from the saved model.
