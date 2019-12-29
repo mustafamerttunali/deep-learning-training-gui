@@ -12,7 +12,7 @@ This repository allows you to get started with a gui based training a Deep Learn
 * It doesn't exist for 1.0 but,  it will be much easier to train  and use object detection algortihms.
 * You can train your model on GPU or CPU.
 * Parallel operation is possible.
-* You won't need a second terminal and a script code to run TensorBoard.
+* You won't be needing a second terminal and a script code to run TensorBoard.
 
 In the words of Stephen Hawking:
 > Science is beautiful when it makes simple explanations of phenomena or connections between different observations. Examples include the double helix in biology and the fundamental equations of physics.
