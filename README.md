@@ -100,7 +100,7 @@ Coming soon.
 
 - [Google - TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/overview) [1]
 
-- [Google - TensorFlow Tutorials](https://www.tensorflow.org/tutorials) [2]
+- [Google - TensorFlow Models](https://www.tensorflow.org/api_docs/python/tf/keras/applications) [2]
 
 - [Google - TensorFlow  Transfer Learning](https://www.tensorflow.org/tutorials/images/transfer_learning) [3]
 
