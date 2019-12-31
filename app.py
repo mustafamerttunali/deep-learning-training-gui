@@ -4,6 +4,7 @@ import threading
 from flask import Flask, request, jsonify, render_template
 from dltgui.dlgui import dl_gui
 import tensorflow as tf
+
 # Set Flask
 app = Flask(__name__)
 
@@ -42,6 +43,7 @@ def terminal():
 @app.route('/predict')
 def predict():
     return render_template('predict.html')
+
 
 @app.route('/result', methods = ['POST'])
 def result():

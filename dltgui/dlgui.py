@@ -1,6 +1,11 @@
+# # # # # # # # # # # # # # # 
 # Author: Mustafa Mert Tunalı
+# ---------------------------
+# ---------------------------
 # Deep Learning Training GUI - Class Page
-# Last Update: 27 December 2019
+# ---------------------------
+# ---------------------------
+# Last Update: 31 December 2019
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
@@ -115,7 +120,121 @@ class dl_gui:
                 callbacks=[tensorboard])
             
             model.save('models/{}.h5'.format(self.project_name))
- 
+
+        elif self.pre_trained_model == "InceptionV3":
+            inceptionv3 = tf.keras.applications.InceptionV3(input_shape = (224,224,3),
+                                                            include_top=False, 
+                                                            weights='imagenet')
+            inceptionv3.trainable = False
+            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+            model = tf.keras.Sequential([
+            inceptionv3,
+            global_average_layer,
+            prediction_layer
+            ])
+            model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+            tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
+                          write_graph=True, write_images=False)
+            Process(target=startTensorboard, args=("logs",)).start()
+            target=model.fit_generator(
+                self.train_data_gen,
+                steps_per_epoch=self.STEPS_PER_EPOCH,
+                validation_data = self.test_data_gen,
+                validation_steps = self.VALID_STEPS_PER_EPOCH,
+                epochs=self.epoch,
+                callbacks=[tensorboard])
+            
+            model.save('models/{}.h5'.format(self.project_name))
+
+
+        elif self.pre_trained_model == "VGG16":
+            VGG16 = tf.keras.applications.VGG16(input_shape = (224,224,3),
+                                                            include_top=False, 
+                                                            weights='imagenet')
+            VGG16.trainable = False
+            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+            model = tf.keras.Sequential([
+            VGG16,
+            global_average_layer,
+            prediction_layer
+            ])
+            model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+            tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
+                          write_graph=True, write_images=False)
+            Process(target=startTensorboard, args=("logs",)).start()
+            target=model.fit_generator(
+                self.train_data_gen,
+                steps_per_epoch=self.STEPS_PER_EPOCH,
+                validation_data = self.test_data_gen,
+                validation_steps = self.VALID_STEPS_PER_EPOCH,
+                epochs=self.epoch,
+                callbacks=[tensorboard])
+            
+            model.save('models/{}.h5'.format(self.project_name))    
+
+        elif self.pre_trained_model == "VGG19":
+            VGG19 = tf.keras.applications.VGG19(input_shape = (224,224,3),
+                                                            include_top=False, 
+                                                            weights='imagenet')
+            VGG19.trainable = False
+            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+            model = tf.keras.Sequential([
+            VGG19,
+            global_average_layer,
+            prediction_layer
+            ])
+            model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+            tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
+                          write_graph=True, write_images=False)
+            Process(target=startTensorboard, args=("logs",)).start()
+            target=model.fit_generator(
+                self.train_data_gen,
+                steps_per_epoch=self.STEPS_PER_EPOCH,
+                validation_data = self.test_data_gen,
+                validation_steps = self.VALID_STEPS_PER_EPOCH,
+                epochs=self.epoch,
+                callbacks=[tensorboard])
+            
+            model.save('models/{}.h5'.format(self.project_name)) 
+
+
+        elif self.pre_trained_model == "NASNetMobile":
+            NASNetMobile = tf.keras.applications.NASNetMobile(input_shape = (224,224,3),
+                                                            include_top=False, 
+                                                            weights='imagenet')
+            NASNetMobile.trainable = False
+            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+            model = tf.keras.Sequential([
+            NASNetMobile,
+            global_average_layer,
+            prediction_layer
+            ])
+            model.compile(optimizer='adam',
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+            tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
+                          write_graph=True, write_images=False)
+            Process(target=startTensorboard, args=("logs",)).start()
+            target=model.fit_generator(
+                self.train_data_gen,
+                steps_per_epoch=self.STEPS_PER_EPOCH,
+                validation_data = self.test_data_gen,
+                validation_steps = self.VALID_STEPS_PER_EPOCH,
+                epochs=self.epoch,
+                callbacks=[tensorboard])
+            
+            model.save('models/{}.h5'.format(self.project_name)) 
+
         else:
             model = Sequential([
                 Conv2D(16, 3, padding='same', activation='relu', input_shape=(self.IMG_HEIGHT, self.IMG_WIDTH ,3)),

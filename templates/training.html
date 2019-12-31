@@ -24,6 +24,7 @@
                 <a class="nav-item nav-link active" href="training" >Training</a>
                 <a class="nav-item nav-link" href="predict" >Predict</a>
                 <a class="nav-item nav-link" href="contact" >Contact</a>
+                <a class="nav-item nav-link disabled" href="#" >Your Projects [Coming Soon]</a>
               </div>
             </div>
           </nav>
@@ -31,38 +32,54 @@
 
     
 
-    <div class="jumbotron" style="background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-    ">
+    <div class="jumbotron">
         
       <div class="row" style="text-align: center;">
 
       
         <div class="col-md-12">
-          <i class="fas fa-cog" style="color: honeydew;"><p class="h1">Set Your Model</p> </i> 
+          <i class="fas fa-cog"><h1 class="display-4" style="text-align: center;">Set Your Model </h1></i> 
+          <p style="text-align: center;font-size: 14px;"><i class="fas fa-exclamation-triangle"></i> Choose what you want to do firstly, then set few parameters to train your model.</p>
         </div>
        
 
+       
+
+         
+  <div class="col-md-12">
+    <button type="button" class="btn btn-primary" onclick="image_classification_toogle()">Image Classification</button>
+          
+    <button type="button" class="btn btn-warning" onclick="object_detection_toggle()">Object Detection [In Development]</button>
+  </div>
 
 
         </div>
       </div>
 
+  <div id="objectDetection" style="display: none;">
+    <div class="col-md-12">  
+      <form action = "http://localhost:5000/terminal" method = "POST" >
+        <select class="form-control form-control-sm">
+          <option selected>Type of label</option>
+          <option>json</option>
+          <option>pascal</option>
+        </select> 
+       <br>
+      </form>
+    </div> 
+  </div>
+
+ 
 
 
-      <!-- FORM  -->
+    <div id="imageClassification" style="display: none;">
 
-        <!-- <select class="form-control form-control-sm">
-        <option selected>Type of label</option>
-        <option>json</option>
-        <option>pascal</option>
-      </select> 
-     <br>
-    -->
-    <form action = "http://localhost:5000/terminal" method = "POST">
+    <div class="col-md-12">  
+    <form action = "http://localhost:5000/terminal" method = "POST" >
 
      
       set your dataset path (datasets/example_dataset)
-      <input class="form-control form-control-sm" type="text"   name="dataset" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+      <input class="form-control form-control-sm" type="text" id="myDIV"  name="dataset" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
     
       <br>
 
@@ -76,9 +93,13 @@
 
       Pre-trained Models *
       <select class="form-control form-control-sm" name="Pre-trained Model">
-      
+        
         <option>MobileNetV2</option>
-        <option disabled style="background-color: rgb(219, 218, 218);">[In Development] frcn_resnet_50</option>
+        <option>InceptionV3</option>
+        <option>VGG16</option>
+        <option>VGG19</option>
+        <option>NASNetMobile</option>
+
       </select>
 
       <br>
@@ -123,6 +144,9 @@
         </div>
 
       </form>
+    </div>
+  </div>
+
         <div class="col-md-4">
           
         </div>
@@ -135,12 +159,27 @@
 
       <footer style="text-align: center;">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı </a>, Version 1.0</footer>
       
-
-  
 </div>
 
-
 </body>
+<script>
+  var od_div = document.getElementById("objectDetection")
+  var ic_div = document.getElementById("imageClassification");
+
+  function object_detection_toggle() {
+    
+    ic_div.style.display = "none";
+    od_div.style.display ="block";
+    
+  }
+
+  function image_classification_toogle() {
+    od_div.style.display ="none";
+    ic_div.style.display = "block";
+  }
+
+  
+  </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
