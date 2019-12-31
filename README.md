@@ -3,16 +3,19 @@
 </p>
 
 # Description
-This repository allows you to get started with a gui based training a Deep Learning model with no detailed configuration needed! Set your  dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool.
+My goal is to simplify the installation and training of pre-trained deep learning models through the GUI (or you can call web app) without writing extra code. Set your  dataset and start the training right away and monitor it with TensorBoard or DLTGUI tool. No more many parameters, no more data preprocessing.
+
+While developing this application, I was inspired by the DIGITS system developed by NVIDIA.
+
 
 * You won't have any problems for training image classification algorithms.
 * It is easy to train a image classification model, save the model, and make predictions from the saved model.
 * A few parameters!
 * You will be able to train on pre-trained models.
 * It doesn't exist for 1.0 but,  it will be much easier to train  and use object detection algortihms.
-* You will be able to train the model on the GPU or CPU.
+* You can train your model on GPU or CPU.
 * Parallel operation is possible.
-* You won't need a second terminal and a script code to run TensorBoard.
+* You won't be needing a second terminal and a script code to run TensorBoard.
 
 In the words of Stephen Hawking:
 > Science is beautiful when it makes simple explanations of phenomena or connections between different observations. Examples include the double helix in biology and the fundamental equations of physics.
@@ -36,7 +39,7 @@ The following is an example of how a dataset should be structured. Before you tr
 ```
 ├──datasets/
     ├──example_dataset/
-        ├── images
+        ├── cat
         │   ├── img_1.jpg/png
         │   └── img_2.jpg/png
     ├──flower_photos/
@@ -76,7 +79,7 @@ For image classification.
 
 ### Training and TensorBoard
 When you start to training, you will be able to access TensorBoard without writing any script on terminal!
-Check ```localhost:6000```
+Check ```localhost:6006```
 
 ![Training-Live](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/train%20live.png)
 
@@ -88,8 +91,8 @@ Check ```localhost:6000```
 ![Result](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/result.png)
 
 
-# Contributing 
-Contributions with example scripts for other frameworks (PyTorch or Caffe 2) are welcome!
+# Contributing  
+Contributions with example scripts for other frameworks (PyTorch or Caffe 2) and other pre-trained models are welcome!
 ### Guidelines
 Coming soon.
 
