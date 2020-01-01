@@ -34,6 +34,7 @@ In the words of Stephen Hawking:
 
 
 
+
 ### Dataset Folder Structure
 The following is an example of how a dataset should be structured. Before you train a deep learning model, put all your dataset into datasets directory.
 
@@ -59,7 +60,7 @@ For image classification.
 
 1. Clone this repo.
 2. ```cd Deep-Learning-Training-GUI```
-3. On your terminal: ```pip install requirements.txt```
+3. On your conda terminal: ```pip install -r requirements.txt```
 4. Set your dataset directory as I show above.
 5. When you set your dataset, go to the terminal and run ```python app.py```. You can access the program on ```localhost:5000``` 
 6. Now you will see the home page.
