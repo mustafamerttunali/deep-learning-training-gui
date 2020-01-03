@@ -109,8 +109,15 @@ Check ```localhost:6006```
 
 # Contributing  
 Contributions with example scripts for other frameworks (PyTorch or Caffe 2) and other pre-trained models are welcome!
+
 ### Guidelines
 Coming soon.
+
+# To-Do List
+
+- [x] Release 5 pre-trained models.
+- [ ] Heatmap on predicted images.
+- [ ] Object Detection - Mask RCNN. 
 
 # References 📚
 
