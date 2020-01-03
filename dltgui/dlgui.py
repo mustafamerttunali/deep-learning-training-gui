@@ -5,7 +5,7 @@
 # Deep Learning Training GUI - Class Page
 # ---------------------------
 # ---------------------------
-# Last Update: 31 December 2019
+# Last Update: 3 January 2020
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
@@ -83,7 +83,26 @@ class dl_gui:
         
         # image_batch, label_batch = next(train_data_gen)
         # self.show_batch(image_batch, label_batch)
-    
+
+    def prepare_image(self, img):
+        img = tf.keras.preprocessing.image.load_img(img, target_size=(224, 224))
+        img_array = tf.keras.preprocessing.image.img_to_array(img)
+        img_array_expanded_dims = np.expand_dims(img_array, axis=0)
+        return tf.keras.applications.mobilenet_v2.preprocess_input(img_array_expanded_dims)
+
+    def sigmoid(self, x):
+        s = 1 / (1 + np.exp(-x))
+        return s
+
+    def predict(self, img, model_dir):
+        img2array = self.prepare_image('static/'+ img)
+        model = tf.keras.models.load_model('models/'+ model_dir)
+        pred = model.predict(img2array)
+        y_classes = pred.argmax(axis=-1)
+        s_pred = self.sigmoid(pred)* 100
+        max_pred = int(np.round(np.max(s_pred))) 
+        classes = self.CLASS_NAMES
+        return "".join(map(str, classes[y_classes])), max_pred
 
       
     def train(self):
@@ -94,17 +113,29 @@ class dl_gui:
                                                             include_top=False, 
                                                             weights='imagenet')
             mobilenet.trainable = False
-            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
-            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
-            model = tf.keras.Sequential([
-            mobilenet,
-            global_average_layer,
-            prediction_layer
-            ])
+            if self.noc == 1:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'sigmoid')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                mobilenet,
+                global_average_layer,
+                prediction_layer
+                ])
+                model.compile(optimizer='adam',
+                loss='binary_crossentropy',
+                metrics=['accuracy'])
+            else:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                mobilenet,
+                global_average_layer,
+                prediction_layer
+                ])
 
-            model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+                model.compile(optimizer='adam',
+                loss='categorical_crossentropy',
+                metrics=['accuracy'])
 
             tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                           write_graph=True, write_images=False)
@@ -126,16 +157,29 @@ class dl_gui:
                                                             include_top=False, 
                                                             weights='imagenet')
             inceptionv3.trainable = False
-            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
-            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
-            model = tf.keras.Sequential([
-            inceptionv3,
-            global_average_layer,
-            prediction_layer
-            ])
-            model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+            if self.noc == 1:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'sigmoid')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                inceptionv3,
+                global_average_layer,
+                prediction_layer
+                ])
+                model.compile(optimizer='adam',
+                loss='binary_crossentropy',
+                metrics=['accuracy'])
+            else:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                inceptionv3,
+                global_average_layer,
+                prediction_layer
+                ])
+
+                model.compile(optimizer='adam',
+                loss='categorical_crossentropy',
+                metrics=['accuracy'])
             tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                           write_graph=True, write_images=False)
             Process(target=startTensorboard, args=("logs",)).start()
@@ -155,16 +199,25 @@ class dl_gui:
                                                             include_top=False, 
                                                             weights='imagenet')
             VGG16.trainable = False
-            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
-            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
-            model = tf.keras.Sequential([
-            VGG16,
-            global_average_layer,
-            prediction_layer
-            ])
-            model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+            if self.noc == 1:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'sigmoid')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                VGG16,
+                global_average_layer,
+                prediction_layer
+                ])
+                model.compile(optimizer='adam',
+                loss='binary_crossentropy',
+                metrics=['accuracy'])
+            else:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                VGG16,
+                global_average_layer,
+                prediction_layer
+                ])
             tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                           write_graph=True, write_images=False)
             Process(target=startTensorboard, args=("logs",)).start()
@@ -183,16 +236,25 @@ class dl_gui:
                                                             include_top=False, 
                                                             weights='imagenet')
             VGG19.trainable = False
-            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
-            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
-            model = tf.keras.Sequential([
-            VGG19,
-            global_average_layer,
-            prediction_layer
-            ])
-            model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+            if self.noc == 1:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'sigmoid')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                VGG19,
+                global_average_layer,
+                prediction_layer
+                ])
+                model.compile(optimizer='adam',
+                loss='binary_crossentropy',
+                metrics=['accuracy'])
+            else:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                VGG19,
+                global_average_layer,
+                prediction_layer
+                ])
             tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                           write_graph=True, write_images=False)
             Process(target=startTensorboard, args=("logs",)).start()
@@ -212,16 +274,25 @@ class dl_gui:
                                                             include_top=False, 
                                                             weights='imagenet')
             NASNetMobile.trainable = False
-            prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
-            global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
-            model = tf.keras.Sequential([
-            NASNetMobile,
-            global_average_layer,
-            prediction_layer
-            ])
-            model.compile(optimizer='adam',
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+            if self.noc == 1:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'sigmoid')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                NASNetMobile,
+                global_average_layer,
+                prediction_layer
+                ])
+                model.compile(optimizer='adam',
+                loss='binary_crossentropy',
+                metrics=['accuracy'])
+            else:
+                prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
+                global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
+                model = tf.keras.Sequential([
+                NASNetMobile,
+                global_average_layer,
+                prediction_layer
+                ])
             tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                           write_graph=True, write_images=False)
             Process(target=startTensorboard, args=("logs",)).start()

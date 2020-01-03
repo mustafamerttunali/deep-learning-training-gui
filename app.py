@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', title ="Version 1.0.2")
 
 @app.route('/contact')
 def contact():
@@ -20,6 +20,21 @@ def contact():
 @app.route('/training')
 def training():
     return render_template('training.html')
+
+@app.route('/terminal-object-detection',methods = ['POST'])
+def terminal_object_detection():
+    if request.method == 'POST':
+      result = request.form
+      dataset = result['dataset']
+      type_of_label = result['type_of_label']
+      split_dataset = result['split_dataset']
+      project_name = result['project_name']
+      pre_trained_model = result['Pre-trained Model']
+      number_of_classes = result['noc']
+      batch_size = result['batch_size']
+      epoch = result['epoch']
+      return render_template("terminal-object-detection.html",result = result)
+
 
 @app.route('/terminal',methods = ['POST'])
 def terminal():
@@ -47,31 +62,14 @@ def predict():
 
 @app.route('/result', methods = ['POST'])
 def result():
-    def prepare_image(img):
-        img = tf.keras.preprocessing.image.load_img(img, target_size=(224, 224))
-        img_array = tf.keras.preprocessing.image.img_to_array(img)
-        img_array_expanded_dims = np.expand_dims(img_array, axis=0)
-        return tf.keras.applications.mobilenet_v2.preprocess_input(img_array_expanded_dims)
-
-    def sigmoid(x):
-        s = 1 / (1 + np.exp(-x))
-        return s
 
     if request.method == 'POST':
         result = request.form
         dataset = result['dataset']
         model_dir= result['model']
         img = result['img']
-        img2array = prepare_image('static/'+ img)
-        model = tf.keras.models.load_model('models/'+model_dir)
-        pred = model.predict(img2array)
-        y_classes = pred.argmax(axis=-1)
-        s_pred = sigmoid(pred)* 100
-        max_pred = int(np.round(np.max(s_pred))) 
         gui = dl_gui(project_name = "Test", dataset=dataset)
-        classes = gui.CLASS_NAMES
-        predicted_class = "".join(map(str, classes[y_classes]))
-
+        predicted_class, max_pred = gui.predict(img, model_dir)
         return render_template('result.html', result = result, img = img, max_pred = max_pred, predicted_class = predicted_class,  mimetype="text/event-stream")
 
 

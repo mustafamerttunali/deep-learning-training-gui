@@ -6,12 +6,11 @@
         type = "image/x-icon"> 
 <script src="https://kit.fontawesome.com/c5ffb49d8a.js" crossorigin="anonymous"></script>
 
-<title >DLTG - Settings</title>
+<title >DLTGUI - Settings</title>
     
 <body>
 
-<div class="container-fluid">
-       
+<div class="container-fluid">  
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="/"><i class="fas fa-infinity"></i> Deep-Learning-Training-GUI</a>
@@ -35,49 +34,73 @@
     <div class="jumbotron">
         
       <div class="row" style="text-align: center;">
-
-      
         <div class="col-md-12">
           <i class="fas fa-cog"><h1 class="display-4" style="text-align: center;">Set Your Model </h1></i> 
           <p style="text-align: center;font-size: 14px;"><i class="fas fa-exclamation-triangle"></i> Choose what you want to do firstly, then set few parameters to train your model.</p>
         </div>
        
-
-       
-
-         
-  <div class="col-md-12">
-    <button type="button" class="btn btn-primary" onclick="image_classification_toogle()">Image Classification</button>
-          
-    <button type="button" class="btn btn-warning" onclick="object_detection_toggle()">Object Detection [In Development]</button>
-  </div>
+        <div class="col-md-12">
+          <button type="button" class="btn btn-primary" onclick="image_classification_toogle()">Image Classification</button>
+                
+          <button type="button" class="btn btn-warning" onclick="object_detection_toggle()">Object Detection [In Development]</button>
+        </div>
 
 
         </div>
       </div>
+      <!--Object Detection BEGINNING-->
+      <div id="objectDetection" style="display: none;">
+          <div class="col-md-12">  
+            <form action = "http://localhost:5000/terminal-object-detection" method = "POST" >
+            Name of your project *
+            <input class="form-control form-control-sm" type="text" name="project_name" required >
+            <br>
+              set your dataset path (datasets/example_dataset) *(required)
+            <input class="form-control form-control-sm" type="text"   name="dataset" required webkitdirectory mozdirectory msdirectory odirectory directory multiple />
+            <br> 
+            Type of label *(required)
+            <select class="form-control form-control-sm" name="type_of_label" required>
+                <option>json</option>
 
-  <div id="objectDetection" style="display: none;">
-    <div class="col-md-12">  
-      <form action = "http://localhost:5000/terminal" method = "POST" >
-        <select class="form-control form-control-sm">
-          <option selected>Type of label</option>
-          <option>json</option>
-          <option>pascal</option>
-        </select> 
-       <br>
-      </form>
-    </div> 
-  </div>
+            </select> 
+            <br>
+            Pre-trained Models *(required)
+            <select class="form-control form-control-sm required" name="Pre-trained Model" required> 
+              <option>Mask RCNN</option>
+            </select>
+            <br> 
+            Number of Classes *(required)
+            <input class="form-control form-control-sm" type="number" name="noc"required >
+            <br>
+            Split the dataset (0.20 is fine) *(required) 
+            <input class="form-control form-control-sm"  type="number" name="split_dataset" placeholder="0.20" min="0.20" max="0.50" required>  
+            <br>
+            Batch Size (default: 16)
+            <input class="form-control form-control-sm" type="number" name="batch_size" placeholder="16" >
+            <br>
+            Epoch (Iteration) (default: 10)
+            <input class="form-control form-control-sm" type="number" name="epoch">
+            <br>
+            <div class="row" style="text-align: center;">
+              <div class="col-md-4"> </div>
+              <div class="col-md-4">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <input class="btn btn-outline-primary" type = "submit" value = "Start Training!"/>  
+                </div>
+              </div>
+            </div>
+            </form>
+          </div> 
+        </div>
 
- 
-
+    <!--Object Detection END-->
+    <!--Image Classification BEGINNING-->
 
     <div id="imageClassification" style="display: none;">
 
     <div class="col-md-12">  
     <form action = "http://localhost:5000/terminal" method = "POST" >
 
-     
       set your dataset path (datasets/example_dataset)
       <input class="form-control form-control-sm" type="text" id="myDIV"  name="dataset" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
     
@@ -146,16 +169,11 @@
       </form>
     </div>
   </div>
+  <!--Image Classification END-->
 
-        <div class="col-md-4">
-          
-        </div>
-
-
-
-        </div>
-
-        <br>
+        <div class="col-md-4"></div>
+ </div>
+<br>
 
       <footer style="text-align: center;">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı </a>, Version 1.0</footer>
       
