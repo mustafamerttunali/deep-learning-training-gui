@@ -20,6 +20,20 @@ While developing this application, I was inspired by the DIGITS system developed
 In the words of Stephen Hawking:
 > Science is beautiful when it makes simple explanations of phenomena or connections between different observations. Examples include the double helix in biology and the fundamental equations of physics.
 
+
+# Updates
+
+### DLTGUI Version 1.0.2
+
+* Fixed single class problem, now you can train one-class model,
+* Added sigmoid as activation function and binary_crossentropy as loss function,
+* Added new function to DLGUI (prepare_data, sigmoid and more)
+* Added new example dataset.
+
+
+### DLTGUI Version 1.0.1:
+* Now you can use InceptionV3, VGG16, VGG19 and NASNetMobile models. [Image Classification]
+
 # Getting started
 ### Prerequisites
 - Anaconda 64-bit
