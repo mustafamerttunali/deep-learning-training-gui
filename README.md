@@ -24,12 +24,14 @@ In the words of Stephen Hawking:
 ### Prerequisites
 - Anaconda 64-bit
 - Python 3.7.3
-- Tensorflow 2.0.0 
+- Tensorflow 2.0.0
+- CUDA and CUDNN (for gpu usage)
 - Numpy 1.16.4
 - Matplotlib
 - PIL
 - subprocess
 - pathlib
+
 
 
 
@@ -58,7 +60,7 @@ For image classification.
 
 1. Clone this repo.
 2. ```cd Deep-Learning-Training-GUI```
-3. On your terminal: ```pip install requirements.txt```
+3. On your conda terminal: ```pip install -r requirements.txt```
 4. Set your dataset directory as I show above.
 5. When you set your dataset, go to the terminal and run ```python app.py```. You can access the program on ```localhost:5000``` 
 6. Now you will see the home page.
@@ -66,7 +68,7 @@ For image classification.
 ![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
 
 ### Page - Training - Parameteres
-![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training%20-%20set%20your%20model%20(1).png) 
+![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training.png) 
 
 7. You must enter the path where your dataset is located. For example, I want to select the ```flower_photos``` folder in the datasets and I will write to the form element like this: ```datasets/flower_photos```
 8. Split the dataset, we need to specify what percentage of the training data we will use as a test.
@@ -100,7 +102,7 @@ Coming soon.
 
 - [Google - TensorFlow Datasets](https://www.tensorflow.org/datasets/catalog/overview) [1]
 
-- [Google - TensorFlow Tutorials](https://www.tensorflow.org/tutorials) [2]
+- [Google - TensorFlow Models](https://www.tensorflow.org/api_docs/python/tf/keras/applications) [2]
 
 - [Google - TensorFlow  Transfer Learning](https://www.tensorflow.org/tutorials/images/transfer_learning) [3]
 
