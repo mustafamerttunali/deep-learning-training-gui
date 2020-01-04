@@ -117,6 +117,7 @@ Coming soon.
 
 - [x] Release 5 pre-trained models.
 - [ ] Choosing CPU or GPU before the training.
+- [ ] Data Augmentation
 - [ ] Choosing Activation Function for singe-class training. (Sigmoid and ReLu)
 - [ ] Heatmap on predicted images.
 - [ ] Object Detection - Mask RCNN. 
