@@ -218,6 +218,9 @@ class dl_gui:
                     global_average_layer,
                     prediction_layer
                     ])
+                    model.compile(optimizer='adam',
+                    loss='categorical_crossentropy',
+                    metrics=['accuracy'])
                 tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                             write_graph=True, write_images=False)
                 Process(target=startTensorboard, args=("logs",)).start()
@@ -255,6 +258,9 @@ class dl_gui:
                     global_average_layer,
                     prediction_layer
                     ])
+                    model.compile(optimizer='adam',
+                    loss='categorical_crossentropy',
+                    metrics=['accuracy'])
                 tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                             write_graph=True, write_images=False)
                 Process(target=startTensorboard, args=("logs",)).start()
@@ -293,6 +299,9 @@ class dl_gui:
                     global_average_layer,
                     prediction_layer
                     ])
+                    model.compile(optimizer='adam',
+                    loss='categorical_crossentropy',
+                    metrics=['accuracy'])
                 tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                             write_graph=True, write_images=False)
                 Process(target=startTensorboard, args=("logs",)).start()
@@ -307,7 +316,7 @@ class dl_gui:
                 model.save('models/{}.h5'.format(self.project_name)) 
 
             elif self.pre_trained_model == "SimpleCnnModel":
-                if self.noc != 1:
+                if self.noc == 2:
                     model = Sequential([
                         Conv2D(16, 3, padding='same', activation='relu', input_shape=(224,224,3)),
                         MaxPooling2D(),
@@ -316,13 +325,31 @@ class dl_gui:
                         Conv2D(64, 3, padding='same', activation='relu'),
                         MaxPooling2D(),
                         Flatten(),
+                        Dropout(0.5),
+                        Dense(64, activation='relu'),
+                        Dense(self.noc, activation = self.activation_function)
+                    ])
+                    model.compile(optimizer='adam',
+                        loss='binary_crossentropy',
+                        metrics=['accuracy'])
+              
+                else:
+                    model = Sequential([
+                        Conv2D(16, 3, padding='same', activation='relu', input_shape=(224,224,3)),
+                        MaxPooling2D(),
+                        Conv2D(32, 3, padding='same', activation='relu'),
+                        MaxPooling2D(),
+                        Conv2D(64, 3, padding='same', activation='relu'),
+                        MaxPooling2D(),
+                        Flatten(),
+                        Dropout(0.5),
                         Dense(64, activation='relu'),
                         Dense(self.noc, activation = 'softmax')
                     ])
                     model.compile(optimizer='adam',
-                        loss='categorical_crossentropy',
-                        metrics=['accuracy'])
-              
+                    loss='categorical_crossentropy',
+                    metrics=['accuracy'])
+
                 
                 tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                             write_graph=True, write_images=False)
