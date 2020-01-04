@@ -120,6 +120,10 @@ Contributions with example scripts for other frameworks (PyTorch or Caffe 2) and
 ### Guidelines
 Coming soon.
 
+
+### Contributors
+*I would like to thank [impROS](https://github.com/impROS) for giving me feedbacks.* 
+
 # To-Do List
 
 - [x] Release 5 pre-trained models.
