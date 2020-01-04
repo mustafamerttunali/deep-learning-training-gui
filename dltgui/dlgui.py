@@ -113,7 +113,7 @@ class dl_gui:
                                                                 include_top=False, 
                                                                 weights='imagenet')
                 mobilenet.trainable = False
-                if self.noc == 1:
+                if self.noc == 2:
                     prediction_layer = tf.keras.layers.Dense(self.noc, activation = self.activation_function)
                     global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
                     model = tf.keras.Sequential([
@@ -157,7 +157,7 @@ class dl_gui:
                                                                 include_top=False, 
                                                                 weights='imagenet')
                 inceptionv3.trainable = False
-                if self.noc == 1:
+                if self.noc == 2:
                     prediction_layer = tf.keras.layers.Dense(self.noc, activation = self.activation_function)
                     global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
                     model = tf.keras.Sequential([
@@ -199,7 +199,7 @@ class dl_gui:
                                                                 include_top=False, 
                                                                 weights='imagenet')
                 VGG16.trainable = False
-                if self.noc == 1:
+                if self.noc == 2:
                     prediction_layer = tf.keras.layers.Dense(self.noc, activation = self.activation_function)
                     global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
                     model = tf.keras.Sequential([
@@ -236,7 +236,7 @@ class dl_gui:
                                                                 include_top=False, 
                                                                 weights='imagenet')
                 VGG19.trainable = False
-                if self.noc == 1:
+                if self.noc == 2:
                     prediction_layer = tf.keras.layers.Dense(self.noc, self.activation_function)
                     global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
                     model = tf.keras.Sequential([
@@ -274,7 +274,7 @@ class dl_gui:
                                                                 include_top=False, 
                                                                 weights='imagenet')
                 NASNetMobile.trainable = False
-                if self.noc == 1:
+                if self.noc == 2:
                     prediction_layer = tf.keras.layers.Dense(self.noc, self.activation_function)
                     global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
                     model = tf.keras.Sequential([
@@ -307,37 +307,23 @@ class dl_gui:
                 model.save('models/{}.h5'.format(self.project_name)) 
 
             elif self.pre_trained_model == "SimpleCnnModel":
-                if self.noc == 1:
+                if self.noc != 1:
                     model = Sequential([
-                        Conv2D(16, 3, padding='same', activation='relu', input_shape=(self.IMG_HEIGHT, self.IMG_WIDTH ,3)),
+                        Conv2D(16, 3, padding='same', activation='relu', input_shape=(224,224,3)),
                         MaxPooling2D(),
                         Conv2D(32, 3, padding='same', activation='relu'),
                         MaxPooling2D(),
                         Conv2D(64, 3, padding='same', activation='relu'),
                         MaxPooling2D(),
                         Flatten(),
-                        Dense(512, activation='relu'),
-                        Dense(self.noc, activation=self.activation_function)
-                    ])
-                    model.compile(optimizer='adam',
-                        loss='binary_crossentropy',
-                        metrics=['accuracy'])
-                else:
-                    model = Sequential([
-                        Conv2D(16, 3, padding='same', activation='relu', input_shape=(self.IMG_HEIGHT, self.IMG_WIDTH ,3)),
-                        MaxPooling2D(),
-                        Conv2D(32, 3, padding='same', activation='relu'),
-                        MaxPooling2D(),
-                        Conv2D(64, 3, padding='same', activation='relu'),
-                        MaxPooling2D(),
-                        Flatten(),
-                        Dense(512, activation='relu'),
+                        Dense(64, activation='relu'),
                         Dense(self.noc, activation = 'softmax')
                     ])
                     model.compile(optimizer='adam',
                         loss='categorical_crossentropy',
                         metrics=['accuracy'])
-
+              
+                
                 tensorboard = tf.keras.callbacks.TensorBoard(log_dir='logs', histogram_freq=0,
                             write_graph=True, write_images=False)
                 Process(target=startTensorboard, args=("logs",)).start()

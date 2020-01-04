@@ -169,12 +169,12 @@
 <br>
 
       Number of Classes
-      <input class="form-control form-control-sm" type="number" onkeyup="checkClass()" id="noc" name="noc"required >
+      <input class="form-control form-control-sm" type="number"  min="2" onkeyup="checkClass()" id="noc" name="noc"required >
       <br>
 
       <div id="activation_function" style="display: none;">
         <div class="alert alert-warning" role="alert">
-          You have singe-class. You must choose an activation function for training (ReLu is better than sigmoid, change my mind).
+          You must choose an activation function for training (ReLu is better than sigmoid, change my mind).
         </div>
       <select class="form-control form-control-sm  " name="activation_function">
         <option>sigmoid</option>
@@ -182,18 +182,31 @@
       </select>
       <br>
     </div>
+    <div class="alert alert-danger" role="alert" id="danger" style="display: none;">
+      Actually You have 2 class. Your dataset should be like that for example: cat and non-cat. Sometimes that means you have one class but you don't.
+      So you need to change your number of classes to 2.
+    </div>
       <script>
       function checkClass(){
         var noc = document.getElementById("noc").value;
         var activation_function = document.getElementById("activation_function");
-        
+        var danger = document.getElementById("danger");
+
         if(noc == 1)
         {
+          activation_function.style.display = "none";
+          danger.style.display = "block";
+        }
+
+        else if(noc == 2)
+        {
           activation_function.style.display = "block";
+          danger.style.display = "none";
         }
   
         else{
           activation_function.style.display = "none";
+          danger.style.display = "none";
           
           
         }
