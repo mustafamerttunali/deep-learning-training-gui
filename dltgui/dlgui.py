@@ -5,7 +5,7 @@
 # Deep Learning Training GUI - Class Page
 # ---------------------------
 # ---------------------------
-# Last Update: 3 January 2020
+# Last Update: 5 January 2020
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
