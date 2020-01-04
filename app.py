@@ -50,7 +50,16 @@ def terminal():
       number_of_classes = result['noc']
       batch_size = result['batch_size']
       epoch = result['epoch']
-      gui = dl_gui(dataset=dataset, project_name = str(project_name), split_dataset = float(split_dataset), pre_trained_model = pre_trained_model, number_of_classes = int(number_of_classes), batch_size = int(batch_size), epoch = int(epoch))
+      activation_function = result['activation_function']
+      gui = dl_gui(dataset=dataset, 
+                   project_name = str(project_name), 
+                   split_dataset = float(split_dataset), 
+                   pre_trained_model = pre_trained_model,
+                   cpu_gpu = cpu_gpu,
+                   number_of_classes = int(number_of_classes), 
+                   batch_size = int(batch_size), 
+                   epoch = int(epoch),
+                   activation_function = activation_function)
       gui.load_dataset()
       thread_gui = threading.Thread(target= gui.train).start()
       return render_template("terminal.html",result = result, thread_gui = thread_gui)

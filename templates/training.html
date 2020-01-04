@@ -100,6 +100,9 @@
 
     <div class="col-md-12">  
     <form action = "http://localhost:5000/terminal" method = "POST" >
+      Name of your project *
+      <input class="form-control form-control-sm" type="text" name="project_name" required >
+      <br>
 
       set your dataset path (datasets/example_dataset)
       <input class="form-control form-control-sm" type="text" id="myDIV"  name="dataset" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
@@ -110,8 +113,36 @@
       <br>
       <input class="form-control form-control-sm" type="number" name="split_dataset" placeholder="0.20" min="0.20" max="0.50" required>
       <br>
-      Name of your project *
-      <input class="form-control form-control-sm" type="text" name="project_name" required >
+      Data Augmentation
+      <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" name="flip" id="flip" disabled>
+      <label class="form-check-label" for="flip" >
+      Flipping [disabled - in development]
+      </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" name="flip" id="flip" disabled>
+        <label class="form-check-label" for="flip" >
+          Rotation [disabled - in development] 
+        </label>
+        </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" name="flip" id="flip" disabled>
+        <label class="form-check-label" for="flip" >
+         Zoom [disabled - in development]
+        </label>
+        </div>
+
+        <!--
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" name="flip" id="flip">
+          <label class="form-check-label" for="flip">
+            Color Augmentation
+          </label>
+          </div>
+        -->
       <br>
 
       Pre-trained Models *
@@ -122,6 +153,7 @@
         <option>VGG16</option>
         <option>VGG19</option>
         <option>NASNetMobile</option>
+        <option>SimpleCnnModel</option>
 
       </select>
 
@@ -129,17 +161,47 @@
 
      CPU/GPU
       <select class="form-control form-control-sm" name="CPU/GPU">
-        <option>GPU</option>
-        <option>CPU</option>
+        <option>/GPU:0</option>
+        <option>/CPU:0</option>
       </select>
 
 
 <br>
 
       Number of Classes
-      <input class="form-control form-control-sm" type="number" name="noc"required >
+      <input class="form-control form-control-sm" type="number" onkeyup="checkClass()" id="noc" name="noc"required >
       <br>
 
+      <div id="activation_function" style="display: none;">
+        <div class="alert alert-warning" role="alert">
+          You have singe-class. You must choose an activation function for training (ReLu is better than sigmoid, change my mind).
+        </div>
+      <select class="form-control form-control-sm  " name="activation_function">
+        <option>sigmoid</option>
+        <option>relu</option>
+      </select>
+      <br>
+    </div>
+      <script>
+      function checkClass(){
+        var noc = document.getElementById("noc").value;
+        var activation_function = document.getElementById("activation_function");
+        
+        if(noc == 1)
+        {
+          activation_function.style.display = "block";
+        }
+  
+        else{
+          activation_function.style.display = "none";
+          
+          
+        }
+        
+      }
+        </script>
+
+      
       Batch Size
       <input class="form-control form-control-sm" type="number" name="batch_size" required >
       <br>
