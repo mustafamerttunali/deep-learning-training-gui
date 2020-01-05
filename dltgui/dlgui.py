@@ -325,7 +325,6 @@ class dl_gui:
                         Conv2D(64, 3, padding='same', activation='relu'),
                         MaxPooling2D(),
                         Flatten(),
-                        Dropout(0.5),
                         Dense(64, activation='relu'),
                         Dense(self.noc, activation = self.activation_function)
                     ])
