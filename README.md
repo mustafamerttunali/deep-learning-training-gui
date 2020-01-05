@@ -23,12 +23,13 @@ In the words of Stephen Hawking:
 
 # Updates
 
-
-### DLTGUI Version 1.0.3
+### DLTGUI Version 1.0.4
 
 * Now you can choose CPU or GPU before the training.
 * You are able to choose activation function for singe-class training. (Sigmoid and ReLu [new])
 * Added SimpleCNNModel
+* Fixed bugs
+
 
 ### DLTGUI Version 1.0.2
 
