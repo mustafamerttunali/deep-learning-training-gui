@@ -55,7 +55,13 @@ In the words of Stephen Hawking:
 - pathlib
 
 
-
+# Available models
+* MobileNetV2
+* Inception V3
+* VGG16 
+* VGG19
+* NASNetMobile
+* SimpleCnnModel
 
 ### Dataset Folder Structure
 The following is an example of how a dataset should be structured. Before you train a deep learning model, put all your dataset into datasets directory.
