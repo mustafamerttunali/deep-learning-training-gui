@@ -23,6 +23,10 @@ In the words of Stephen Hawking:
 
 # Updates
 
+### DLTGUI Version 1.0.6
+
+* Bug fixes.
+
 ### DLTGUI Version 1.0.5
 
 * Now you can do data augmentation using Augmentor. 
