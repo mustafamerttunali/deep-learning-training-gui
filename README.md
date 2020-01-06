@@ -23,6 +23,10 @@ In the words of Stephen Hawking:
 
 # Updates
 
+### DLTGUI Version 1.0.5
+
+* Now you can do data augmentation using Augmentor. 
+
 ### DLTGUI Version 1.0.4
 
 * Now you can choose CPU or GPU before the training.
@@ -53,6 +57,7 @@ In the words of Stephen Hawking:
 - PIL
 - subprocess
 - pathlib
+- Augmentor
 
 
 # Available models
