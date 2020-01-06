@@ -64,7 +64,7 @@ def terminal():
                    batch_size = int(batch_size), 
                    epoch = int(epoch),
                    activation_function = activation_function)
-      print("Flip", flip)
+
       if(flip == "True" or rotation == "True" or zoom == "True"):
           samples = result['samples']
           gui.load_dataset(imgaugmentation = True, flip = flip, rotation = rotation, zoom = zoom, samples = int(samples))
