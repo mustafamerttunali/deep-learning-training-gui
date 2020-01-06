@@ -73,7 +73,7 @@
             <input class="form-control form-control-sm" type="number" name="noc"required >
             <br>
             Split the dataset (0.20 is fine) *(required) 
-            <input class="form-control form-control-sm"  type="number" name="split_dataset" placeholder="0.20" min="0.20" max="0.50" required>  
+            <input class="form-control form-control-sm"  type="number" name="split_dataset" placeholder="0.20" min="0.20" max="0.50" required> 
             <br>
             Batch Size (default: 16)
             <input class="form-control form-control-sm" type="number" name="batch_size" placeholder="16" >
@@ -108,32 +108,139 @@
       <input class="form-control form-control-sm" type="text" id="myDIV"  name="dataset" webkitdirectory mozdirectory msdirectory odirectory directory multiple />
     
       <br>
-
       Split the dataset (0.20 is fine) 
       <br>
-      <input class="form-control form-control-sm" type="number" name="split_dataset" placeholder="0.20" min="0.20" max="0.50" required>
+      <input class="form-control form-control-sm" type="number" name="split_dataset"  onkeyup="checkSplit()" id="split"  min="0.20" max="0.35" required>
+
+      <div class="alert alert-warning" role="alert" id="warning_div" style="display: none;">
+          Are you sure for this split_dataset value? Lower than 0.20 could be a problem.
+        </div>
+
+        <div class="alert alert-danger" role="alert" id="danger_div" style="display: none;">
+          Your split_dataset value is bigger than 0.50! This could be a problem.
+        </div>
+
+        <div class="alert alert-success" role="alert" id="success_div" style="display: none;">
+          Your split_dataset value is great!
+        </div>
+      <script>
+
+
+
+      function checkSplit()
+      {
+
+        var warning_div = document.getElementById("warning_div");
+        var danger_div = document.getElementById("danger_div");
+        var success_div = document.getElementById("success_div");
+        var split_dataset = document.getElementById("split").value;
+        if(split_dataset < 0.20)
+        { 
+          success_div.style.display = "none";
+          danger_div.style.display = "none";
+          warning_div.style.display = "block";
+        }
+
+        else if(split_dataset > 0.35)
+        {
+          success_div.style.display = "none";
+          warning_div.style.display = "none";
+          danger_div.style.display = "block";
+        }
+
+        else if(split_dataset >= 0.20 && split_dataset <= 0.35)
+        {
+          warning_div.style.display = "none";
+          danger_div.style.display = "none";
+          success_div.style.display = "block";
+         
+        }
+
+        else{
+          warning_div.style.display = "none";
+          danger_div.style.display = "none";
+          success_div.style.display = "none";
+        }
+
+      }
+      
+      </script>
       <br>
       Data Augmentation
       <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" name="flip" id="flip" disabled>
+      <input class="form-check-input" type="checkbox" value="True" name="flip" id="flip"onclick="dataAug()">
+      <input class="form-check-input" type="hidden" value="False" name="flip" id="flip_hidden">
       <label class="form-check-label" for="flip" >
-      Flipping [disabled - in development]
+      Flipping 
       </label>
       </div>
 
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" name="flip" id="flip" disabled>
-        <label class="form-check-label" for="flip" >
-          Rotation [disabled - in development] 
+        <input class="form-check-input" type="checkbox" value="True" name="rotation" id="Rotation" onclick="dataAug()" >
+        <input class="form-check-input" type="hidden" value="False" name="rotation" id="rotation_hidden" >
+        <label class="form-check-label" for="Rotation" >
+          Rotation 
         </label>
         </div>
 
+  
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" name="flip" id="flip" disabled>
-        <label class="form-check-label" for="flip" >
-         Zoom [disabled - in development]
+        <input class="form-check-input" type="checkbox" value="True" name="zoom" id="Zoom" onclick="dataAug()">
+        <input class="form-check-input" type="hidden" value="False" name="zoom" id="zoom_hidden" >
+        <label class="form-check-label" for="Zoom" >
+         Zoom 
         </label>
         </div>
+
+  
+
+      <div id="samples_div" style="display: none;">
+        <br>
+        <label class="form-check-label" for="samples" id="samples" >
+        Samples - Default Value: 100 ( If you write 200,
+       The system will generate 200 augmented images based on your specifications. ) 
+        </label>
+        <input class="form-control form-control-sm" type="number" name="samples"  id="samples"  min="100"  required>
+        </div>
+        <script>
+
+          if(document.getElementById("Rotation").checked) 
+          {
+            document.getElementById('rotation_hidden').disabled = true;
+           
+          }
+
+          
+          if(document.getElementById("Zoom").checked) 
+          {
+          document.getElementById('zoom_hidden').disabled = true;
+          
+          }
+
+          
+          if(document.getElementById("flip").checked) 
+          {
+           document.getElementById('flip_hidden').disabled = true;
+           
+          }
+
+        function dataAug(){
+
+        
+
+          if(document.getElementById("flip").checked || document.getElementById("Zoom").checked || document.getElementById("Rotation").checked  )
+
+          {
+            document.getElementById('samples_div').style.display = "block";
+          } 
+
+          else{
+            document.getElementById('samples_div').style.display = "none";
+          }
+         
+        }
+         
+          </script>
 
         <!--
         <div class="form-check">
@@ -167,7 +274,6 @@
 
 
 <br>
-
       Number of Classes
       <input class="form-control form-control-sm" type="number"  min="2" onkeyup="checkClass()" id="noc" name="noc"required >
       <br>
@@ -213,6 +319,7 @@
         
       }
         </script>
+      
 
       
       Batch Size
@@ -220,7 +327,28 @@
       <br>
 
       Epoch (Iteration)
-      <input class="form-control form-control-sm" type="number" name="epoch" required >
+      <input class="form-control form-control-sm" type="number" name="epoch" id="epoch" onkeyup="checkEpoch()" required >
+      <div class="alert alert-warning" role="alert" id="epoch_warning" style="display: none;">
+        Your epoch is lower than 7. Your model may not be trained well. If you have over-fitting, you can choose lower than 7.
+      </div>
+
+      <script>
+      
+      function checkEpoch()
+      {
+        var epoch = document.getElementById("epoch").value;
+        var epoch_warning = document.getElementById("epoch_warning");
+
+        if(epoch < 7)
+        {
+          epoch_warning.style.display = "block";
+        }
+
+        else{
+          epoch_warning.style.display = "none";
+        }
+      }
+      </script>
 
       <br>
 
@@ -233,6 +361,7 @@
 
           <div class="btn-group" role="group" aria-label="Basic example">
             <input class="btn btn-outline-primary" type = "submit" value = "Start Training!"/>  
+            
           
           </div>
 

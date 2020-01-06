@@ -20,6 +20,7 @@ from multiprocessing import Process
 import datetime
 import pathlib
 import os
+import Augmentor
 
 np.random.seed(0)
 tf_version = tf.__version__
@@ -50,6 +51,7 @@ class dl_gui:
          self.activation_function = activation_function
          self.IMG_HEIGHT, self.IMG_WIDTH = 224, 224
          self.CLASS_NAMES = np.array([item.name for item in self.data_dir.glob('*') if item.name != "LICENSE.txt"])
+         
 
     def show_batch(self,image_batch, label_batch):
         plt.figure(figsize=(10,10))
@@ -60,8 +62,24 @@ class dl_gui:
             plt.axis('off')
         plt.show()   
   
-    def load_dataset(self):
-       
+    def load_dataset(self, imgaugmentation = False, flip = False, rotation = False, zoom = False, samples = 100):
+        if imgaugmentation == True:
+            p = Augmentor.Pipeline(str(self.data_dir), output_directory="")
+            if flip == "True":
+                print("Flipping...")
+                p.flip_left_right(probability = 0.5)
+                
+            if rotation == "True":
+                print("Rotating...")
+                p.rotate(probability=0.7, max_left_rotation=10, max_right_rotation=10)
+
+            if  zoom == "True":
+                print("Zooming...")
+                p.zoom(probability=0.5, min_factor=1.1, max_factor=1.5)  
+            print("Total of Samples:  ", samples)
+            p.sample(samples) 
+            p.process()                  
+
         image_count = len(list(self.data_dir.glob('*/*.jpg')))
         image_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255, validation_split=self.split_dataset)
         self.STEPS_PER_EPOCH = np.ceil(image_count/self.batch_size)
@@ -89,6 +107,7 @@ class dl_gui:
         img_array = tf.keras.preprocessing.image.img_to_array(img)
         img_array_expanded_dims = np.expand_dims(img_array, axis=0)
         return tf.keras.applications.mobilenet_v2.preprocess_input(img_array_expanded_dims)
+
 
     def sigmoid(self, x):
         s = 1 / (1 + np.exp(-x))
