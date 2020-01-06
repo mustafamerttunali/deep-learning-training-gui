@@ -105,7 +105,7 @@ For image classification.
 ![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
 
 ### Page - Training - Parameteres
-![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/training.png) 
+![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/set_your_model.png) 
 
 7. You must enter the path where your dataset is located. For example, I want to select the ```flower_photos``` folder in the datasets and I will write to the form element like this: ```datasets/flower_photos```
 8. Split the dataset, we need to specify what percentage of the training data we will use as a test.
@@ -120,7 +120,7 @@ For image classification.
 When you start to training, you will be able to access TensorBoard without writing any script on terminal!
 Check ```localhost:6006```
 
-![Training-Live](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/train%20live.png)
+![Training-Live](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/train_live.png)
 
 ### Prediction
 
