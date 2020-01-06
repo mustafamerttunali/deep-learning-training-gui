@@ -23,12 +23,13 @@ In the words of Stephen Hawking:
 
 # Updates
 
-
-### DLTGUI Version 1.0.3
+### DLTGUI Version 1.0.4
 
 * Now you can choose CPU or GPU before the training.
 * You are able to choose activation function for singe-class training. (Sigmoid and ReLu [new])
 * Added SimpleCNNModel
+* Fixed bugs
+
 
 ### DLTGUI Version 1.0.2
 
@@ -54,7 +55,13 @@ In the words of Stephen Hawking:
 - pathlib
 
 
-
+# Available models
+* MobileNetV2
+* Inception V3
+* VGG16 
+* VGG19
+* NASNetMobile
+* SimpleCnnModel
 
 ### Dataset Folder Structure
 The following is an example of how a dataset should be structured. Before you train a deep learning model, put all your dataset into datasets directory.
@@ -150,5 +157,7 @@ Coming soon.
 - [Graphing Pretty Charts With Python Flask and Chartjs](https://blog.ruanbekker.com/blog/2017/12/14/graphing-pretty-charts-with-python-flask-and-chartjs/) [7]
 
 - [Simple and efficient data augmentations using the Tensorfow tf.Data and Dataset API](https://www.wouterbulten.nl/blog/tech/data-augmentation-using-tensorflow-data-dataset/) [8]
+
+- Marcus D Bloice, Peter M Roth, Andreas Holzinger, Biomedical image augmentation using Augmentor, Bioinformatics, https://doi.org/10.1093/bioinformatics/btz259 [9]
 
 
