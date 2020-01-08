@@ -109,7 +109,7 @@ For image classification.
 
 7. You must enter the path where your dataset is located. For example, I want to select the ```flower_photos``` folder in the datasets and I will write to the form element like this: ```datasets/flower_photos```
 8. Split the dataset, we need to specify what percentage of the training data we will use as a test.
-9. Pre-trained Models - Currently only MobileNetV2 is available, but in future versions you can easily select other pre-trained models for fine-tuning.
+9. Pre-trained Models - Currently only MobileNetV2 is available, but in future versions you can easily select other pre-trained models for fine-tuning [not available yet].
 10. CPU / GPU - You need to specify whether you want to train on the GPU or CPU (the first version will automatically run on the GPU).
 11. Number Of Classes -  I'll go again from the flower_photos example. There are 5 separate folders under the ```flower_photos``` folder. This is our class count. When you train your own data set, you have to create as many folders here as you have classes.
 12. Batch Size - Specifies whether the training samples are uploaded to the training network in escapes. If you have a 1080 Ti or better GPU, you can set it to 64 or 128. The higher Batch Size, less noise that the model learns.
@@ -146,6 +146,7 @@ Coming soon.
 - [x] Choosing CPU or GPU before the training.
 - [x] Choosing Activation Function for singe-class training. (Sigmoid and ReLu)
 - [x] Data Augmentation
+- [ ] Fine-Tuning
 - [ ] Heatmap on predicted images.
 - [ ] Object Detection - Mask RCNN. 
 
