@@ -22,6 +22,11 @@ In the words of Stephen Hawking:
 
 [Guide - Youtube Video (Coming Soon)](https://www.youtube.com/channel/UCGhkAaCu28T-DQxuZ3hZNkA) 
 
+
+![Before Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/before_training.gif
+) 
+
+
 # Updates
 
 ### DLTGUI Version 1.0.7
