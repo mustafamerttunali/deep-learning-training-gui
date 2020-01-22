@@ -20,8 +20,17 @@ While developing this application, I was inspired by the DIGITS system developed
 In the words of Stephen Hawking:
 > Science is beautiful when it makes simple explanations of phenomena or connections between different observations. Examples include the double helix in biology and the fundamental equations of physics.
 
+[Guide - Youtube Video (Coming Soon)](https://www.youtube.com/channel/UCGhkAaCu28T-DQxuZ3hZNkA) 
 
 # Updates
+
+### DLTGUI Version 1.0.7
+
+* Many bugs have been solved.
+
+* You will be able to Fine-Tuning your model. In this way, you can easily increase the success rate of the model. 
+
+* You will be able to see which parts your model focuses on while classifying images (Class activation map, heat map - heatmap)
 
 ### DLTGUI Version 1.0.6
 
