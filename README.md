@@ -146,8 +146,8 @@ Coming soon.
 - [x] Choosing CPU or GPU before the training.
 - [x] Choosing Activation Function for singe-class training. (Sigmoid and ReLu)
 - [x] Data Augmentation
-- [ ] Fine-Tuning
-- [ ] Heatmap on predicted images.
+- [x] Fine-Tuning
+- [x] Heatmap on predicted images.
 - [ ] Object Detection - Mask RCNN. 
 
 # References 📚
