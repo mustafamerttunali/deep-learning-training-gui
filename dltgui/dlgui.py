@@ -5,7 +5,7 @@
 # Deep Learning Training GUI - Class Page
 # ---------------------------
 # ---------------------------
-# Last Update: 5 January 2020
+# # # # # # # # # # # # # # # 
 
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
@@ -14,6 +14,7 @@ from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import matplotlib.pyplot as plt
 import numpy as np
 import IPython.display as display
+import cv2
 from PIL import Image
 import subprocess
 from multiprocessing import Process
@@ -21,6 +22,8 @@ import datetime
 import pathlib
 import os
 import Augmentor
+import time
+
 
 np.random.seed(0)
 tf_version = tf.__version__
@@ -38,8 +41,9 @@ def startTensorboard(logdir):
    
 
 class dl_gui:
+    
     "Version 1.0 This version, allows you to train image classification model easily"
-    def __init__(self, project_name, dataset, split_dataset = 0.20, pre_trained_model = 'MobileNetV2', cpu_gpu='', number_of_classes = 5, batch_size = 16, epoch = 1, activation_function =''):
+    def __init__(self, project_name, dataset, split_dataset = 0.20, pre_trained_model = 'MobileNetV2', cpu_gpu='', number_of_classes = 5, batch_size = 16, epoch = 1, activation_function ='', fine_tune_epochs = 10):
          self.project_name = project_name
          self.data_dir = pathlib.Path(dataset)
          self.split_dataset = split_dataset
@@ -51,6 +55,7 @@ class dl_gui:
          self.activation_function = activation_function
          self.IMG_HEIGHT, self.IMG_WIDTH = 224, 224
          self.CLASS_NAMES = np.array([item.name for item in self.data_dir.glob('*') if item.name != "LICENSE.txt"])
+         self.fine_tune_epochs = fine_tune_epochs
          
 
     def show_batch(self,image_batch, label_batch):
@@ -104,54 +109,86 @@ class dl_gui:
 
     def prepare_image(self, img):
         img = tf.keras.preprocessing.image.load_img(img, target_size=(224, 224))
-        img_array = tf.keras.preprocessing.image.img_to_array(img)
+        img_array = tf.keras.preprocessing.image.img_to_array(img)     
         img_array_expanded_dims = np.expand_dims(img_array, axis=0)
         return tf.keras.applications.mobilenet_v2.preprocess_input(img_array_expanded_dims)
 
+    def prepare_image_heatmap(self, img):
+            img = tf.keras.preprocessing.image.load_img(img, target_size=(224, 224))
+            img_array = tf.keras.preprocessing.image.img_to_array(img)
+            
+            return img_array
+
+
+    def show_heatmap(self, img, model, layer_name = ''):
+
+        grad_model = tf.keras.models.Model([model.inputs], [model.get_layer(layer_name).output, model.output])
+        with tf.GradientTape() as tape:
+            conv_outputs, predictions = grad_model(np.array([img]))
+            loss = predictions
+        output = conv_outputs[0]
+        grads = tape.gradient(loss, conv_outputs)[0]
+        weights = tf.reduce_mean(grads, axis=(0, 1))
+        cam = np.ones(output.shape[0:2], dtype=np.float32)
+        for index, w in enumerate(weights):
+            cam += w * output[:, :, index]
+
+        cam = cv2.resize(cam.numpy(), (224, 224))
+        cam = np.maximum(cam, 0)
+        heatmap = (cam - cam.min()) / (cam.max() - cam.min())
+
+        cam = cv2.applyColorMap(np.uint8(255*heatmap), cv2.COLORMAP_JET)
+        output_image = cv2.addWeighted(cv2.cvtColor(img.astype('uint8'), cv2.COLOR_RGB2BGR), 0.5, cam, 0.62, 0)
+        filename = 'output_{}.png'.format(time.time())
+        plt.imsave('static/'+ filename, output_image)
+        return filename
 
     def sigmoid(self, x):
         s = 1 / (1 + np.exp(-x))
         return s
 
+    
     def predict(self, img, model_dir):
         img2array = self.prepare_image('static/'+ img)
+        img2array_heatmap = self.prepare_image_heatmap('static/'+ img)
         model = tf.keras.models.load_model('models/'+ model_dir)
+        layer_name = 'Conv_1_bn' # For only MobileNetV2
+        try:
+            heat_map = self.show_heatmap(img2array_heatmap, model, layer_name)
+            show_heatmap = True
+        except:
+            show_heatmap = False
+            heat_map = None
+            pass
         pred = model.predict(img2array)
         y_classes = pred.argmax(axis=-1)
         s_pred = self.sigmoid(pred)* 100
         max_pred = int(np.round(np.max(s_pred))) 
         classes = self.CLASS_NAMES
-        return "".join(map(str, classes[y_classes])), max_pred
+        return "".join(map(str, classes[y_classes])), max_pred, show_heatmap, heat_map
 
       
-    def train(self):
+    def train(self, fine_tuning = "False"):
         with tf.device(self.cpu_gpu):
             if self.pre_trained_model == "MobileNetV2":
                 "Image should be (96, 96), (128, 128), (160, 160),(192, 192), or (224, 224)"
+                
                 mobilenet = tf.keras.applications.MobileNetV2(input_shape = (224,224,3),
                                                                 include_top=False, 
                                                                 weights='imagenet')
                 mobilenet.trainable = False
                 if self.noc == 2:
-                    prediction_layer = tf.keras.layers.Dense(self.noc, activation = self.activation_function)
-                    global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
-                    model = tf.keras.Sequential([
-                    mobilenet,
-                    global_average_layer,
-                    prediction_layer
-                    ])
+                    average_pooling = tf.keras.layers.GlobalAveragePooling2D()(mobilenet.output)
+                    prediction_layer = tf.keras.layers.Dense(self.noc, activation = self.activation_function)(average_pooling)
+                    model = tf.keras.Model(mobilenet.inputs, prediction_layer)
                     model.compile(optimizer='adam',
                     loss='binary_crossentropy',
                     metrics=['accuracy'])
                 else:
-                    prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')
-                    global_average_layer = tf.keras.layers.GlobalAveragePooling2D()
-                    model = tf.keras.Sequential([
-                    mobilenet,
-                    global_average_layer,
-                    prediction_layer
-                    ])
-
+                    average_pooling = tf.keras.layers.GlobalAveragePooling2D()(mobilenet.output)
+                    prediction_layer = tf.keras.layers.Dense(self.noc, activation = self.activation_function)(average_pooling)
+                    model = tf.keras.Model(mobilenet.inputs, prediction_layer)
+                    model.summary()
                     model.compile(optimizer='adam',
                     loss='categorical_crossentropy',
                     metrics=['accuracy'])
@@ -169,7 +206,36 @@ class dl_gui:
                     epochs=self.epoch,
                     callbacks=[tensorboard])
                 
-                model.save('models/{}.h5'.format(self.project_name))
+                if fine_tuning == "True":
+                    mobilenet.trainable = True
+
+                    # Fine-tune from this layer onwards
+                    fine_tune_at = 100
+
+                    # Freeze all the layers before the `fine_tune_at` layer
+                    for layer in mobilenet.layers[:fine_tune_at]:
+                        layer.trainable =  False
+
+                    
+                    total_epochs =   self.epoch + self.fine_tune_epochs
+                    if self.noc == 2:
+                        model.compile(optimizer=tf.keras.optimizers.Adam(lr=0.0001/10),
+                        loss='binary_crossentropy',
+                        metrics=['accuracy'])
+                    else:
+                        model.compile(optimizer=tf.keras.optimizers.Adam(lr=0.0001/10),
+                        loss='categorical_crossentropy',
+                        metrics=['accuracy'])
+                    print("Fine-Tuning starting....")
+                    history_fine = model.fit(self.train_data_gen,
+                         epochs=total_epochs,
+                         initial_epoch =  target.epoch[-1],
+                         validation_data=self.test_data_gen)
+                    model.save('models/{}_fine_tuned.h5'.format(self.project_name))
+
+                else:
+                    model.save('models/{}.h5'.format(self.project_name))
+                        
 
             elif self.pre_trained_model == "InceptionV3":
                 inceptionv3 = tf.keras.applications.InceptionV3(input_shape = (224,224,3),

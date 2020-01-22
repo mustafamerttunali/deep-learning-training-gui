@@ -5,7 +5,8 @@
 "https://image.flaticon.com/icons/png/512/2043/premium/2043014.png" 
         type = "image/x-icon"> 
 <script src="https://kit.fontawesome.com/c5ffb49d8a.js" crossorigin="anonymous"></script>
-
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="Pragma" content="no-cache" />
 <title >DLTG - Prediction</title>
 
 
@@ -25,7 +26,6 @@
                 <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="training" >Training</a>
                 <a class="nav-item nav-link active" href="predict" >Predict</a>
-                <a class="nav-item nav-link" href="contact" >Contact</a>
                 <a class="nav-item nav-link disabled" href="#" >Your Projects [Coming Soon]</a>
               </div>
             </div>
@@ -38,14 +38,19 @@
         <h1 class="display-4" style="text-align: center;">Result </h1>
       </div>
 
-<div class="row" style="text-align: center;">
+<div class="row">
 
-  <div class="col-md-7">
-    <img src="{{url_for('static', filename= img)}}" class="img-fluid" alt="Image" style="width: 50%;">
+  <div class="col-md-4">
+    <img src="{{url_for('static', filename= img)}}" class="img-fluid" style="height: 350px; width:100%;" alt="Image">
 
   </div>
-  <div class="col-md-3 border">
-    <h4 class="display-4">Accuracy
+
+  
+
+
+  <br>
+  <div class="col-md-5 border">
+    <h4 class="display-4" style="text-align: center;">Accuracy
     </h4>
 
     <br>
@@ -70,6 +75,8 @@
 
     <br>
 
+    
+
     <div class="btn-group" role="group" aria-label="Basic example">
       
       <a class="btn btn-outline-primary" href="predict">Try Again?</a>
@@ -78,13 +85,24 @@
 
 
 </div>
+<div class="col-md-3 border">
 
+{% if show_heatmap == True %}
 
+        <div><img src="{{url_for('static', filename= img_name)}}" class="img-fluid" alt="Image"  id= "imgID"style="height: 350px; width: 100%;"  ></div>
+    {% else %}
+
+    <h5 class="display-4" style="text-align: center;">Activation map is not available for your model. Use MobileNetV2.</h5>
+
+    {% endif %}
+  
+   <p>{{img_name}}</p>
+</div>
 
 </div>
 <br>
 <br>            
-<footer style="text-align: center;">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı</a>, Version 1.0</footer>
+<footer style="text-align: center;">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı</a>, Version 1.7</footer>
 
 
   

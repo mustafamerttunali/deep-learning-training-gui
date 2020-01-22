@@ -22,7 +22,6 @@
                 <a class="nav-item nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link active" href="training" >Training</a>
                 <a class="nav-item nav-link" href="predict" >Predict</a>
-                <a class="nav-item nav-link" href="contact" >Contact</a>
                 <a class="nav-item nav-link disabled" href="#" >Your Projects [Coming Soon]</a>
               </div>
             </div>
@@ -251,6 +250,75 @@
           </div>
         -->
       <br>
+      Fine-Tuning
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="True" name="fine_tuning" id="fine_tuning" onclick="fine_tuning_check()" >
+        <input class="form-check-input" type="hidden" value="False" name="fine_tuning" id="fine_tuning_hidden" >
+        <label class="form-check-label" for="Zoom" >
+          Activate
+        </label>
+        </div>
+        
+        
+        <div id="fine_tune_epochs" style="display: none;">
+          Fine Tune Epochs (Default: 10)
+        <input class="form-control form-control-sm" type="number"  value="10" name="fine_tune_epochs" id="fine_tune" onkeyup="fine_tuning_check()" >
+        <div class="alert alert-warning" role="alert" id="danger_fine_tuning" style="display: none;">
+         Your Fine Tuning value is lower than 4, your training acc may not increase. 
+        </div>
+        <div class="alert alert-success" role="alert" id="success_fine_tuning" style="display: none;">
+          Your Fine Tuning value is fine!
+         </div>
+
+         <div class="alert alert-info" role="alert" id="warning_fine_tuning" style="display: none;">
+          Your Fine Tuning value is greater than 30, you may have over-fitting problem. 
+         </div>
+
+      </div>
+      <br>
+
+      <script>
+        function fine_tuning_check(){
+
+        var fine_tune = document.getElementById("fine_tune").value;
+        var danger_ft = document.getElementById("danger_fine_tuning");
+        var success_ft = document.getElementById("success_fine_tuning");  
+        var warning_ft = document.getElementById("warning_fine_tuning");  
+
+        if(fine_tune >= 1 && fine_tune <= 3 )
+        {
+          warning_ft.style.display = "none";
+          success_ft.style.display = "none";
+          danger_ft.style.display = "block"
+        }
+
+        else if(fine_tune >= 4 && fine_tune <= 30)
+        {
+          danger_ft.style.display = "none";
+          warning_ft.style.display = "none";
+          success_ft.style.display = "block";
+        }
+
+        else if(fine_tune >30)
+        {
+          danger_ft.style.display = "none";
+          success_ft.style.display = "none";
+          warning_ft.style.display = "block";
+
+
+        }  
+          
+        if(document.getElementById("fine_tuning").checked) 
+        {
+          document.getElementById('fine_tuning_hidden').disabled = true;
+          document.getElementById('fine_tune_epochs').style.display = "block";
+        }
+        else
+        {
+          document.getElementById('fine_tune_epochs').style.display = "none";
+        }
+      }
+      </script>
 
       Pre-trained Models *
       <select class="form-control form-control-sm" name="Pre-trained Model">
@@ -379,7 +447,7 @@
  </div>
 <br>
 
-      <footer style="text-align: center;">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı </a>, Version 1.0</footer>
+<footer style="text-align: center;">Built by <a href="https://mustafamerttunali.github.io/" target="_blank">Mustafa Mert Tunalı </a>, Version 1.7</footer>
       
 </div>
 
