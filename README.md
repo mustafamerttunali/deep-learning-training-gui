@@ -29,6 +29,10 @@ In the words of Stephen Hawking:
 
 # Updates
 
+### DLTGUI Version 1.0.8
+
+* Bug fixes.
+
 ### DLTGUI Version 1.0.7
 
 * Many bugs have been solved.
