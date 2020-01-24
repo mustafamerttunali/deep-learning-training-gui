@@ -169,10 +169,9 @@ class dl_gui:
 
       
     def train(self, fine_tuning = "False"):
+        "Image should be (96, 96), (128, 128), (160, 160),(192, 192), or (224, 224)"
         with tf.device(self.cpu_gpu):
-            if self.pre_trained_model == "MobileNetV2":
-                "Image should be (96, 96), (128, 128), (160, 160),(192, 192), or (224, 224)"
-                
+            if self.pre_trained_model == "MobileNetV2":     
                 mobilenet = tf.keras.applications.MobileNetV2(input_shape = (224,224,3),
                                                                 include_top=False, 
                                                                 weights='imagenet')
@@ -186,7 +185,7 @@ class dl_gui:
                     metrics=['accuracy'])
                 else:
                     average_pooling = tf.keras.layers.GlobalAveragePooling2D()(mobilenet.output)
-                    prediction_layer = tf.keras.layers.Dense(self.noc, activation = self.activation_function)(average_pooling)
+                    prediction_layer = tf.keras.layers.Dense(self.noc, activation = 'softmax')(average_pooling)
                     model = tf.keras.Model(mobilenet.inputs, prediction_layer)
                     model.summary()
                     model.compile(optimizer='adam',
