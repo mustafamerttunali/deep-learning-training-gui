@@ -39,7 +39,7 @@ In the words of Stephen Hawking:
 
 * You will be able to Fine-Tuning your model. In this way, you can easily increase the success rate of the model. 
 
-* You will be able to see which parts your model focuses on while classifying images (Class activation map, heat map - heatmap)
+* You will be able to see which parts your model focuses on while classifying images (Class activation map, heat map - heatmap - available for MobileNetV2 only)
 
 ### DLTGUI Version 1.0.6
 
