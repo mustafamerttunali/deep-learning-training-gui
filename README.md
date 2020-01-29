@@ -72,7 +72,7 @@ In the words of Stephen Hawking:
 ### Prerequisites
 - Anaconda 64-bit
 - Python 3.7.3
-- Tensorflow 2.1.0
+- Tensorflow 2.1.0 (TF 2.1 requires CUDA 10.1)
 - CUDA and CUDNN (for gpu usage)
 - Numpy 1.16.4
 - Matplotlib
