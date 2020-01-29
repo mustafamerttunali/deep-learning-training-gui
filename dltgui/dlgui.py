@@ -29,7 +29,7 @@ np.random.seed(0)
 tf_version = tf.__version__
 
 
-if tf_version < "2.0.0":
+if tf_version < "2.0.1":
     subprocess.call(['pip', 'install', 'tensorflow-gpu'])
 else:
     print("Your TensorFlow version is up to date! {}".format(tf_version))
