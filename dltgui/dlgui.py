@@ -29,7 +29,7 @@ np.random.seed(0)
 tf_version = tf.__version__
 
 
-if tf_version < "2.0.1":
+if tf_version < "2.0.0":
     subprocess.call(['pip', 'install', 'tensorflow-gpu'])
 else:
     print("Your TensorFlow version is up to date! {}".format(tf_version))
@@ -58,6 +58,8 @@ class dl_gui:
          self.fine_tune_epochs = fine_tune_epochs
          
 
+         
+
     def show_batch(self,image_batch, label_batch):
         plt.figure(figsize=(10,10))
         for n in range(16):
@@ -84,11 +86,11 @@ class dl_gui:
             print("Total of Samples:  ", samples)
             p.sample(samples) 
             p.process()                  
-
+        
         image_count = len(list(self.data_dir.glob('*/*.jpg')))
         image_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255, validation_split=self.split_dataset)
         self.STEPS_PER_EPOCH = np.ceil(image_count/self.batch_size)
-        self.train_data_gen = image_generator.flow_from_directory(directory=str(self.data_dir),
+        self.train_data_gen = image_generator.flow_from_directory(directory=self.data_dir,
                                                             batch_size=self.batch_size,
                                                             shuffle=True,
                                                             target_size=(self.IMG_HEIGHT, self.IMG_WIDTH),
@@ -123,13 +125,19 @@ class dl_gui:
     def show_heatmap(self, img, model, layer_name = ''):
 
         grad_model = tf.keras.models.Model([model.inputs], [model.get_layer(layer_name).output, model.output])
+
         with tf.GradientTape() as tape:
             conv_outputs, predictions = grad_model(np.array([img]))
-            loss = predictions
+            class_number = len(predictions[0])
+            loss = predictions[:,class_number-1]
+
         output = conv_outputs[0]
         grads = tape.gradient(loss, conv_outputs)[0]
+
         weights = tf.reduce_mean(grads, axis=(0, 1))
+
         cam = np.ones(output.shape[0:2], dtype=np.float32)
+
         for index, w in enumerate(weights):
             cam += w * output[:, :, index]
 
@@ -138,7 +146,9 @@ class dl_gui:
         heatmap = (cam - cam.min()) / (cam.max() - cam.min())
 
         cam = cv2.applyColorMap(np.uint8(255*heatmap), cv2.COLORMAP_JET)
-        output_image = cv2.addWeighted(cv2.cvtColor(img.astype('uint8'), cv2.COLOR_RGB2BGR), 0.5, cam, 0.62, 0)
+
+        output_image = cv2.addWeighted(cv2.cvtColor(img.astype('uint8'), cv2.COLOR_RGB2BGR), 0.5, cam, 0.65, 0)
+
         filename = 'output_{}.png'.format(time.time())
         plt.imsave('static/'+ filename, output_image)
         return filename
