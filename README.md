@@ -29,6 +29,9 @@ In the words of Stephen Hawking:
 
 # Updates
 
+### DLTGUI Version 1.0.9
+- Bug Fixes (There was a problem about showing heatmap  for Cuda >= 10.0, fixed). 
+
 ### DLTGUI Version 1.0.8
 
 * Bug fixes.
