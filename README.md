@@ -76,7 +76,7 @@ In the words of Stephen Hawking:
 - Anaconda 64-bit
 - Python 3.7.3
 - Tensorflow 2.0.1 
-- CUDA and CUDNN (for gpu usage)
+- CUDA and CUDNN ( Minimum Cuda 10.0 - for gpu usage)
 - Numpy 1.16.4
 - Matplotlib
 - PIL
