@@ -7,6 +7,8 @@
 # ---------------------------
 # # # # # # # # # # # # # # # 
 
+
+# Libraries
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
@@ -24,17 +26,19 @@ import os
 import Augmentor
 import time
 
-
+# makes the random numbers predictable.
 np.random.seed(0)
+
+# checking Tensorflow version
 tf_version = tf.__version__
 
-
-if tf_version < "2.0.0":
+# TF Version lower than 2.0.0 could be a problem.
+if tf_version < "2.1.0":
     subprocess.call(['pip', 'install', 'tensorflow-gpu'])
 else:
     print("Your TensorFlow version is up to date! {}".format(tf_version))
 
-
+# Tensorboard Function
 def startTensorboard(logdir):
     # Start tensorboard with system call
     os.system("tensorboard --logdir {}".format(logdir))
@@ -59,7 +63,6 @@ class dl_gui:
          
 
          
-
     def show_batch(self,image_batch, label_batch):
         plt.figure(figsize=(10,10))
         for n in range(16):
