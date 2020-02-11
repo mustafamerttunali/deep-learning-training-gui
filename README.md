@@ -76,7 +76,7 @@ In the words of Stephen Hawking:
 - Anaconda 64-bit
 - Python 3.7.3
 - Tensorflow 2.0.1 
-- CUDA and CUDNN (for gpu usage)
+- CUDA and CUDNN ( Minimum Cuda 10.0 - for gpu usage)
 - Numpy 1.16.4
 - Matplotlib
 - PIL
@@ -125,7 +125,7 @@ For image classification.
 
 ![Home](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/home.png) 
 
-### Page - Training - Parameteres
+### Page - Training - Parameters
 ![Training](https://github.com/mustafamerttunali/Deep-Learning-Training-GUI/blob/master/doc_images/set_your_model.png) 
 
 7. You must enter the path where your dataset is located. For example, I want to select the ```flower_photos``` folder in the datasets and I will write to the form element like this: ```datasets/flower_photos```
