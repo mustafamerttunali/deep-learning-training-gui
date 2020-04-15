@@ -159,7 +159,8 @@ Coming soon.
 
 
 ### Contributors
-*I would like to thank [impROS](https://github.com/impROS) for giving me feedbacks.* 
+- *I would like to thank [impROS](https://github.com/impROS) for giving me feedbacks.* 
+- [LexCybermac](https://github.com/LexCybermac)
 
 # To-Do List
 
