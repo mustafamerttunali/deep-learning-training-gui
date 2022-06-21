@@ -6,7 +6,7 @@ h5py==2.9.0
 imageio==2.5.0
 imagesize==1.1.0
 matplotlib==3.1.0
-numpy==1.16.4
+numpy==1.22.0
 opencv-python
 numpydoc==0.9.1
 protobuf==3.8.0
