@@ -1,5 +1,5 @@
 ﻿ipython
-Babel==2.7.0
+Babel==2.9.1
 Bottleneck==1.2.1
 Flask==1.1.1
 h5py==2.9.0
