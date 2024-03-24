@@ -10,9 +10,8 @@
 
 # Libraries
 import tensorflow as tf
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
 import matplotlib.pyplot as plt
 import numpy as np
 import IPython.display as display
@@ -90,15 +89,14 @@ class dl_gui:
             p.sample(samples) 
             p.process()                  
         
-        image_count = len(list(self.data_dir.glob('*/*.jpg')))
         image_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255, validation_split=self.split_dataset)
-        self.STEPS_PER_EPOCH = np.ceil(image_count/self.batch_size)
         self.train_data_gen = image_generator.flow_from_directory(directory=self.data_dir,
                                                             batch_size=self.batch_size,
                                                             shuffle=True,
                                                             target_size=(self.IMG_HEIGHT, self.IMG_WIDTH),
                                                             classes = list(self.CLASS_NAMES),
                                                             subset='training')
+        self.STEPS_PER_EPOCH = np.ceil(self.train_data_gen.samples/self.batch_size)
 
         self.test_data_gen = image_generator.flow_from_directory(directory=str(self.data_dir),
                                                             batch_size=self.batch_size,
@@ -183,6 +181,7 @@ class dl_gui:
       
     def train(self, fine_tuning = "False"):
         "Image should be (96, 96), (128, 128), (160, 160),(192, 192), or (224, 224)"
+        print("Detected GPU/CPU devices: ", tf.config.list_physical_devices())
         with tf.device(self.cpu_gpu):
             if self.pre_trained_model == "MobileNetV2":     
                 mobilenet = tf.keras.applications.MobileNetV2(input_shape = (224,224,3),
